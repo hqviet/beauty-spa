@@ -1,0 +1,27 @@
+<?php
+return[
+    'home' => 'Trang chủ',
+    'about_us' => 'Giới thiệu',
+    'about' => 'Giới thiệu chung',
+    'product_service' => 'Sản phẩm - Dịch vụ',
+    'products' => 'Sản phẩm',
+    'services' => 'Dịch vụ',
+    'news' => 'Tin tức',
+    'contact' => 'Liên hệ',
+    'We_are_a_global_online_fashion'=>'Chúng tôi là nhà bán lẻ thời trang trực tuyến toàn cầu, cung cấp hàng nghìn phong cách và xu hướng.',
+    'detail' => 'Chi tiết',
+    'title' => 'Tiêu đề',
+    'email' => 'E-mail',
+    'content' => 'Nội dung',
+    'send' => 'Gửi',
+    'cung_cap_thiet_bi' => 'Cung cấp thiết bị và dịch vụ bảo trì',
+    'thi_cong_xay_lap' => 'Thi công, Xây lắp công trình xây dựng',
+    'dau_tu' => 'Đầu tư',
+    'related_news' => 'TIN TỨC LIÊN QUAN',
+    'product_category' => 'Danh mục sản phẩm dịch vụ',
+    'by_brands' => 'Thương hiệu',
+    'featured_service' => 'Dịch vụ nổi bật',
+    'product_list' => 'Danh sách sản phẩm',
+    'readmore' => 'Xem thêm',
+    'service-not-found' => 'Không có dịch vụ này'
+];

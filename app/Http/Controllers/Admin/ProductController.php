@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-// use DB;
 use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\DeleteProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use File;
 
 class ProductController extends Controller
 {
@@ -40,7 +41,6 @@ class ProductController extends Controller
 
         $categories = $this->category->select('name', 'id')->get();
         $brands = $this->brand->select('name', 'id')->get();
-
         $options = [
             'categories' => $categories,
             'brands' => $brands,
@@ -48,7 +48,6 @@ class ProductController extends Controller
             'action' => 'create',
             'id' => null,
         ];
-
         return view($this->product_form, $options);
     }
 
@@ -64,7 +63,6 @@ class ProductController extends Controller
         } else {
             return back()->withInput();
         }
-
         $this->product->name = $request->get('name');
         $this->product->category_id = $request->get('category');
         $this->product->brand_id = $request->get('brand');
@@ -102,7 +100,6 @@ class ProductController extends Controller
             $this->product = Product::find($id);
             $categories = $this->category->select('name', 'id')->get();
             $brands = $this->brand->select('name', 'id')->get();
-    
             $options = [
                 'product' => $this->product,
                 'action' => 'edit',
@@ -117,8 +114,35 @@ class ProductController extends Controller
         }
     }
 
-    public function editProduct()
+    public function editProduct(UpdateProductRequest $request)
     {
+        $id = $request->get('id');
+        $data = [
+            'name' => $request->get('name'),
+            'category_id' => $request->get('category'),
+            'brand_id' => $request->get('brand'),
+            'price' => $request->get('price'),
+            'quantity' => $request->get('quantity'),
+            'slug' => str_slug($request->get('name')),
+            'desc_en' => $request->get('desc_en'),
+            'desc_vi' => $request->get('desc_vi', '')
+        ];
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = time().$file->getClientOriginalName();
+            $path = "uploads/products/";
+            $file->move($path,$name);
+            $data['image'] = $name;
+            $old_image_path = "/uploads/products/" . $this->product->find($id)->image;  
+            if(File::exists($old_image_path)) {
+                File::delete($old_image_path);
+            }
+        }
+        $this->product->where('id', $id)->update($data);
         
+        return redirect()->route('admin.product.list')->with('update_product', [
+            'status' => 'success',
+            'message' => 'Product has been updated succesfully!'
+        ]);
     }
 }

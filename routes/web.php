@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/add-product', 'Front\CartController@addToCart')->name('front.cart.add');
 
 Route::group(
     [
@@ -17,6 +18,10 @@ Route::group(
         'as'         => 'front.'
     ],function () {
         Route::get('/', 'HomeController@index')->name('index');
+        // Route::post('/add', 'CartController@addToCart')->name('cart.add');
+        // Route::post('/remove', 'CartController@removeItem')->name('cart.remove');
+        // Route::post('/update', 'CartController@updateItem')->name('cart.update');
+        // Route::post('/remove-all', 'CartController@removeAllItems')->name('cart.remove_all');
     });
 
 Route::group(

@@ -34,6 +34,7 @@
 </head>
 
 <body>
+        <div id="map"></div>
     <div class="wrapper">
         @include('frontend.layout.header')
         @include('frontend.layout.mobile_menu')
@@ -56,20 +57,47 @@
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="{{ asset('assets/front/js/main.js') }}"></script>
     <script>
-        $('.quick-view').click(function(e) { 
+        
+        $('.quick-view').click(function (e) {
             e.preventDefault();
             var product = $(this).data('product');
             if (product.image.length == 0) {
-                product.image = "{{ asset('assets/front/img/product/quickview.jpg') }}"; 
+                product.image = "{{ asset('assets/front/img/product/quickview.jpg') }}";
             }
             $('#product-name').text(product.name);
             $('#product-price').text('$ ' + product.price);
             $('#product-img').attr('src', product.image);
-            $('#product-detail').attr('href','');
+            $('#product-detail').attr('href', '');
             $('#productModal').modal('toggle');
             // $('#cart_btn').attr('data-id', product.id);
         });   
+
+        $('.add-to-cart').click(function() {
+            // console.log('click');
+            console.log($(this).data('id'));
+            console.log('{{ Session::token() }}');
+            $.ajax({
+                url: '{{ route('front.cart.add') }}',
+                type: 'post',
+                data: {
+                    _token: '{{ Session::token() }}',
+                    product_id: $(this).data('id')
+                },
+                dataType: 'json',
+                success: function(data) {
+                    // console.log(data);
+                    $('.cart-quantity').empty().text(data.totalItems);
+                    notify('bottom', 'center', '&gt;', "" + data.status, 'animated fadeInDown', 'animated fadeOutUp', "" + data.message);
+                },
+                error: function() {
+                    alert('fail');
+                }
+            });
+               
+                // notify('bottom', 'center', '&gt;', "danger", 'animated fadeInDown', 'animated fadeOutUp', "Something went wrong! Please try again");
+        });
     </script>
+
 </body>
 
 </html>

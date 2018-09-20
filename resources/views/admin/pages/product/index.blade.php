@@ -21,9 +21,15 @@
 
     <!-- Main content -->
     <section class="content">
+        
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-md-12">
+                @if (Session::has('update_product')) 
+                <div class="alert alert-{{ Session::get('update_product')['status'] }} alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-check"></i>{{ Session::get('update_product')['message'] }}</div>
+                @endif
                 @if (Session::has('delete_product'))
                 <div class="alert alert-{{ Session::get('delete_product')['status'] == 'success' ? 'success' : 'danger' }} alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -32,7 +38,6 @@
                 </div>
                 @endif
                 <div class="box">
-                    
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">

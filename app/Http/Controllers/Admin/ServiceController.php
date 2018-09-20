@@ -54,7 +54,6 @@ class ServiceController extends Controller
             {
                 $file = $request->file('image');
                 $name = time().$file->getClientOriginalName();
-
                 $path = "assets/admin/image_service";
                 $file->move($path,$name);
             }

@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="product-info">
                                         <h6 class="product-title">
-                                            <a href="single-product.html">{{ $product->name }}</a>
+                                            <a href="{{ route('front.product.detail', $product->slug) }}">{{ $product->name }}</a>
                                         </h6>
                                         <div class="pro-rating">
                                             <a href="#"><i class="zmdi zmdi-star"></i></a>

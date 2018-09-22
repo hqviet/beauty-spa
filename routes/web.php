@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('/add-product', 'Front\CartController@addToCart')->name('front.cart.add');
 
 Route::group(
     [
@@ -18,10 +17,27 @@ Route::group(
         'as'         => 'front.'
     ],function () {
         Route::get('/', 'HomeController@index')->name('index');
-        // Route::post('/add', 'CartController@addToCart')->name('cart.add');
-        // Route::post('/remove', 'CartController@removeItem')->name('cart.remove');
-        // Route::post('/update', 'CartController@updateItem')->name('cart.update');
-        // Route::post('/remove-all', 'CartController@removeAllItems')->name('cart.remove_all');
+       
+        /**
+         * Cart
+         */
+        Route::get('/cart', 'CartController@index')->name('cart.index');
+        Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
+        // Cart - ajax
+        Route::post('/add', 'CartController@addToCart')->name('cart.add');
+        Route::post('/remove', 'CartController@removeItem')->name('cart.remove');
+        Route::post('/update', 'CartController@updateItem')->name('cart.update');
+        Route::post('/remove-all', 'CartController@removeAllItems')->name('cart.remove_all');
+
+        /**
+         * Product
+         */
+        // Product detail
+        Route::get('/product-detail/{slug}', 'ProductController@showProductDetail')->name('product.detail');
+        // Products in category
+        Route::get('category/{slug}', 'ProductController@showProductInCategory')->name('product.list.category');
+        // Products in brand
+        Route::get('brand/{slug}', 'ProductController@showProductInBrand')->name('product.list.brand');
     });
 
 Route::group(

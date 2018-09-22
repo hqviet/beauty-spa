@@ -31,14 +31,14 @@
 
     <!-- Modernizr JS -->
     <script src="{{ asset('assets/front/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    @yield('styles')
 </head>
 
 <body>
-        <div id="map"></div>
     <div class="wrapper">
         @include('frontend.layout.header')
         @include('frontend.layout.mobile_menu')
-        @include('frontend.layout.slider')
+        @yield('slider')
         @yield('content')
         @include('frontend.layout.footer')
         @include('frontend.layout.quickview')
@@ -67,15 +67,12 @@
             $('#product-name').text(product.name);
             $('#product-price').text('$ ' + product.price);
             $('#product-img').attr('src', product.image);
-            $('#product-detail').attr('href', '');
-            $('#productModal').modal('toggle');
-            // $('#cart_btn').attr('data-id', product.id);
+            $('#add-to-cart').attr('data-id', product.id);
+            $('#productModal').modal('toggle');            
         });   
 
-        $('.add-to-cart').click(function() {
-            // console.log('click');
-            console.log($(this).data('id'));
-            console.log('{{ Session::token() }}');
+        $('.add-to-cart').click(function(e) {
+            e.preventDefault();
             $.ajax({
                 url: '{{ route('front.cart.add') }}',
                 type: 'post',
@@ -93,10 +90,12 @@
                     alert('fail');
                 }
             });
-               
-                // notify('bottom', 'center', '&gt;', "danger", 'animated fadeInDown', 'animated fadeOutUp', "Something went wrong! Please try again");
+            $('#productModal').modal('hide');
         });
+
+
     </script>
+    @yield('scripts')
 
 </body>
 

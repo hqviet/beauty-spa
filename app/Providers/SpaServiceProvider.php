@@ -6,6 +6,8 @@ use App\Models\CategoryServiceTranslation;
 use Illuminate\Support\ServiceProvider;
 use View;
 use Illuminate\Http\Request;
+use App\Models\Brand;
+use App\Models\Category;
 
 class SpaServiceProvider extends ServiceProvider
 {
@@ -18,7 +20,13 @@ class SpaServiceProvider extends ServiceProvider
     {
         View::composer(['frontend.layout.header'], function ($view) {
             $category_services = CategoryServiceTranslation::all();
-            $view->with('category_services', $category_services);
+            $categories = Category::all();
+            $brands = Brand::all();
+            $view->with([
+                'category_services' => $category_services,
+                'categories' => $categories,
+                'brands' => $brands
+                ]);
         });
     }
 

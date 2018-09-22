@@ -16,12 +16,18 @@ class HomeController extends Controller
         $lang = $request->session()->get('language');
         $services = Service::listServices($lang)->take(6)->get();
         $categories = Category::select('name', 'slug')->get();
+        $brands = Brand::select('name', 'slug')->get();
         $products = Product::all();
         return view('frontend.index', [
             'services' => $services,
             'categories' => $categories,
             'products' => $products,
+            'brands' => $brands,
             'limit' => 8
         ]);
+
+
     }
+
+    
 }

@@ -20,17 +20,12 @@
                                 <div class="price-box-3">
                                     <div class="s-price-box">
                                         <span class="new-price" id="product-price"></span>
-                                        {{-- <span class="old-price">£190.00</span> --}}
                                     </div>
                                 </div>
-                                <a href="single-product-left-sidebar.html" class="see-all">See all features</a>
                                 <div class="quick-add-to-cart">
-                                    <form method="post" class="cart">
-                                        <div class="numbers-row">
-                                            <input type="number" id="french-hens" value="3">
-                                        </div>
-                                        <button class="single_add_to_cart_button" type="submit">Add to cart</button>
-                                    </form>
+                                    <div class="mt-20">
+                                        <a class="button small add-to-cart" id="add-to-cart" data-id="" href="#"><span>Add to cart </span> </a>
+                                    </div>
                                 </div>
                                 <div class="quick-desc">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero.

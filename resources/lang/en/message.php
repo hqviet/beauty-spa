@@ -1,8 +1,9 @@
 <?php
 return [
-    'Created successfully!' => 'Tạo mới thành công!',
-    'Updated successfully!' => 'Cập nhật thành công!',
-    'Deleted fail!' => 'Xóa bị lỗi!',
-    'Deleted successfully!' => 'Xóa thành công!',
-    'delete_success' => 'Xóa thành công!',
+    'create_success' => 'Created successfully!',
+    'create_error' => 'Fail to create!',
+    'update_success' => 'Updated successfully!',
+    'update_error' => 'Fail to update!',
+    'delete_error!' => 'Removed successfully!',
+    'delete_success' => 'Fail to remove!',
 ];

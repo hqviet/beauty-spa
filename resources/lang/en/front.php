@@ -21,6 +21,6 @@ return[
     'product_category' => 'Product Categories',
     'by_brands' => 'By Brands',
     'featured_service' => 'FEATURED SERVICES',
-    'product_list' => 'Product List',
+    'product_list' => 'Feature products',
     'readmore' => 'Read more'
 ];

@@ -28,6 +28,28 @@ class SpaServiceProvider extends ServiceProvider
                 'brands' => $brands
                 ]);
         });
+        View::composer(['frontend.product_in_brand'], function ($view) {
+            $categories = Category::all();
+            $brands = Brand::all();
+            $view->with([
+                'categories' => $categories,
+                'brands' => $brands
+                ]);
+        });
+        View::composer(['frontend.home.brand'], function ($view) {
+            $brands = Brand::all();
+            $view->with([
+                'brands' => $brands
+                ]);
+        });
+        View::composer(['frontend.product_in_category'], function ($view) {
+            $categories = Category::all();
+            $brands = Brand::all();
+            $view->with([
+                'categories' => $categories,
+                'brands' => $brands
+                ]);
+        });
     }
 
     /**

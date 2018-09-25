@@ -84,7 +84,7 @@ class ProductController extends Controller
         if ($this->product->find($request->get('delete_id'))->delete()) {
             return back()->with('delete_product', [
                 'status' => 'success',
-                'Product has been deleted successfully!'
+                'message' => 'Product has been deleted successfully!'
             ]);
         } else {
             return back()->with('delete_product', [

@@ -1,6 +1,7 @@
 @extends('frontend.layout.app')
 @section('title', 'Product detail')
 @section('content')
+<section id="page-content" class="page-wrapper">
 <div class="shop-section mb-80 mt-80">
     <div class="container">
         <div class="row">
@@ -11,7 +12,7 @@
                         <!-- imgs-zoom-area start -->
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="imgs-zoom-area">
-                                <img id="zoom_03" src="{{ is_null($product->image) ? asset('uploads/products/' . $product->image) : asset('assets/front/img/product/6.jpg') }}" data-zoom-image="{{ is_null($product->image) ? asset('uploads/products/' . $product->image) : asset('assets/front/img/product/6.jpg') }}" alt="">
+                                <img id="zoom_03" src="{{ $product->image ? asset('uploads/products/' . $product->image) : asset('assets/front/img/product/6.jpg') }}" data-zoom-image="{{ $product->image ? asset('uploads/products/' . $product->image) : asset('assets/front/img/product/6.jpg') }}" alt="">
                             </div>
                         </div>
                         <!-- imgs-zoom-area end -->
@@ -166,4 +167,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

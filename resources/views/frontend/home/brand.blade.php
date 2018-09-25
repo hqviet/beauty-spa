@@ -9,56 +9,20 @@
         </div>
         <div class="by-brand-product">
             <div class="row active-by-brand slick-arrow-2">
+                @forelse ($brands as $brand)
                 <!-- single-brand-product start -->
                 <div class="col-xs-12">
                     <div class="single-brand-product">
-                        <a href="single-product.html"><img src="{{ asset('assets/front/img/product/5.jpg') }}" alt=""></a>
+                        <a href="{{ route('front.product.list.brand',['slug' => $brand->slug]) }}"><img src="{{ asset('assets/front/img/product/5.jpg') }}" alt=""></a>
                         <h3 class="brand-title text-gray">
-                            <a href="#">Brand name</a>
+                            <a href="{{ route('front.product.list.brand',['slug' => $brand->slug]) }}">{{ $brand->name }}</a>
                         </h3>
                     </div>
                 </div>
                 <!-- single-brand-product end -->
-                <!-- single-brand-product start -->
-                <div class="col-xs-12">
-                    <div class="single-brand-product">
-                        <a href="single-product.html"><img src="{{ asset('assets/front/img/product/6.jpg') }}" alt=""></a>
-                        <h3 class="brand-title text-gray">
-                            <a href="#">Brand name</a>
-                        </h3>
-                    </div>
-                </div>
-                <!-- single-brand-product end -->
-                <!-- single-brand-product start -->
-                <div class="col-xs-12">
-                    <div class="single-brand-product">
-                        <a href="single-product.html"><img src="{{ asset('assets/front/img/product/7.jpg') }}" alt=""></a>
-                        <h3 class="brand-title text-gray">
-                            <a href="#">Brand name</a>
-                        </h3>
-                    </div>
-                </div>
-                <!-- single-brand-product end -->
-                <!-- single-brand-product start -->
-                <div class="col-xs-12">
-                    <div class="single-brand-product">
-                        <a href="single-product.html"><img src="{{ asset('assets/front/img/product/8.jpg') }}" alt=""></a>
-                        <h3 class="brand-title text-gray">
-                            <a href="#">Brand name</a>
-                        </h3>
-                    </div>
-                </div>
-                <!-- single-brand-product end -->
-                <!-- single-brand-product start -->
-                <div class="col-xs-12">
-                    <div class="single-brand-product">
-                        <a href="single-product.html"><img src="{{ asset('assets/front/img/product/8.jpg') }}" alt=""></a>
-                        <h3 class="brand-title text-gray">
-                            <a href="#">Brand name</a>
-                        </h3>
-                    </div>
-                </div>
-                <!-- single-brand-product end -->
+                @empty
+                    
+                @endforelse
             </div>
         </div>
     </div>

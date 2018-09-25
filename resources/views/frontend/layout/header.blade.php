@@ -162,7 +162,7 @@
                                 <div class="total-cart-in">
                                     <div class="cart-toggler">
                                         <a href="{{ route('front.cart.index') }}">
-                                            <span class="cart-quantity"></span><br>
+                                            <span class="cart-quantity">{{ Cart::count() }}</span><br>
                                             <span class="cart-icon">
                                                 <i class="zmdi zmdi-shopping-cart-plus"></i>
                                             </span>

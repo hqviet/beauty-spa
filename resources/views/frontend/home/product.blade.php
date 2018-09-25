@@ -44,7 +44,7 @@
                                 <div class="product-item">
                                     <div class="product-img">
                                         <a href="single-product.html">
-                                            <img src="{{ asset('assets/front/img/product/7.jpg') }}" alt=""/>
+                                            <img style="height: 300px;" src="{{ $product->image ? asset('uploads/products/' . $product->image) : asset('assets/front/img/product/6.jpg') }}" alt=""/>
                                         </a>
                                     </div>
                                     <div class="product-info">

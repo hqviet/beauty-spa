@@ -39,7 +39,7 @@
     <div class="wrapper">
         @include('frontend.layout.header')
         @include('frontend.layout.mobile_menu')
-        @include('frontend.layout.slider')
+        @yield('slider')
         @yield('content')
         @include('frontend.layout.footer')
         @include('frontend.layout.quickview')

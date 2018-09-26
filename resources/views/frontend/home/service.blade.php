@@ -20,7 +20,7 @@
                 <div class="blog-item">
                     <img src="{{ asset('assets/admin/image_service') }}/{{ $service->image }}" alt="" height="400px">
                     <div class="blog-desc">
-                        <h5 class="blog-title"><a href="{{ route('front.service-detail', $service->slug) }}">{{ $service->s_name }}</a></h5>
+                        <h6 class="blog-title"><a href="{{ route('front.service-detail', $service->slug) }}">{{ $service->s_name }}</a></h6>
                         <p>{!! $service->short_description !!}</p>
                         <div class="read-more">
                             <a href="{{ route('front.service-detail', $service->slug) }}">Read more</a>

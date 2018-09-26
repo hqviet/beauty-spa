@@ -2,6 +2,19 @@
 @section('title', $cateTranslation->name)
 @section('content')
     <div class="blog-section mb-50">
+        <div class="breadcrumbs-section plr-200 mb-80">
+            <div class="breadcrumbs overlay-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="breadcrumbs-inner">
+                                <h1 class="breadcrumbs-title"></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12">
@@ -17,7 +30,7 @@
                         <div class="blog-item">
                             <img src="{{ asset('assets/admin/image_service') }}/{{ $service->image }}" alt="" height="400px">
                             <div class="blog-desc">
-                                <h5 class="blog-title"><a href="{{ route('front.service-detail', $service->slug) }}">{{ $service->s_name }}</a></h5>
+                                <h6 class="blog-title"><a href="{{ route('front.service-detail', $service->slug) }}">{{ $service->s_name }}</a></h6>
                                 <p>{!! $service->short_description !!}</p>
                                 <div class="read-more">
                                     <a href="{{ route('front.service-detail', $service->slug) }}">Read more</a>

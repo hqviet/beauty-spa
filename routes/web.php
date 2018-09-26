@@ -15,7 +15,8 @@ Route::group(
     [
         'namespace'  => 'Front',
         'as'         => 'front.'
-    ],function () {
+    ],
+    function () {
         Route::get('/', 'HomeController@index')->name('index');
 
         Route::get('service', 'ServiceController@service')->name('service');
@@ -23,6 +24,14 @@ Route::group(
         Route::get('category-service/{slug}', 'ServiceController@category')->name('category-service');
 
         Route::get('service-detail/{slug}', 'ServiceController@serviceDetail')->name('service-detail');
+
+        Route::get('login', 'UserController@login')->name('login');
+
+        Route::post('login', 'UserController@processLogin')->name('login');
+
+        Route::post('register', 'UserController@processRegister')->name('register');
+
+        Route::get('logout', 'UserController@logout')->name('logout');
     });
 
 Route::group(

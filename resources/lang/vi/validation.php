@@ -119,11 +119,11 @@ return [
     'attributes' => [
         'name' => 'Tên',
         'first_name' => 'Tên',
-        'last_name' => 'Họ lót',
+        'last_name' => 'Họ',
         'mobile1' => 'Điện thoại',
-        'personal_id' => 'CMND/Passport',
         'address' => 'Địa chỉ',
         'birthday' => 'Ngày sinh',
         'gender' => 'Giới tính',
+        'title' => 'tiêu đề',
     ],
 ];

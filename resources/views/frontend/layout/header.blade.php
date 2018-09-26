@@ -7,12 +7,6 @@
                     <div class="col-sm-6 hidden-xs">
                         <div class="call-us">
                             <p class="mb-0 roboto">
-                                <a href="?lang=vi" style="margin-right: 20px">
-                                    <img class="flag" height="16px" src="{{ asset('assets/front/img/vn.svg') }}" alt="Vietnam Flag">
-                                </a>
-                                <a href="?lang=en">
-                                    <img class="flag" height="16px" src="{{ asset('assets/front/img/gb.svg') }}" alt="United Kingdom Flag">
-                                </a>
                             </p>
 
                         </div>
@@ -20,24 +14,27 @@
                     <div class="col-sm-6 col-xs-12">
                         <div class="top-link clearfix">
                             <ul class="link f-right">
+                                @if ($user = Sentinel::getUser())
                                 <li>
                                     <a href="my-account.html">
                                         <i class="zmdi zmdi-account"></i>
-                                        My Account
+                                        {{$user->first_name}}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="wishlist.html">
-                                        <i class="zmdi zmdi-favorite"></i>
-                                        Wish List (0)
+                                    <a href="{{ route('front.logout') }}">
+                                        <i class="zmdi zmdi-power-setting"></i>
+                                        {{ __('front.logout') }}
                                     </a>
                                 </li>
+                                @else
                                 <li>
-                                    <a href="login.html">
+                                    <a href="{{ route('front.login') }}">
                                         <i class="zmdi zmdi-lock"></i>
-                                        Login
+                                        {{ __('front.login') }}
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -164,6 +161,13 @@
                                     <li>
                                         <a href="contact.html">{{ __('front.contact') }}</a>
                                     </li>
+                                    <a href="?lang=vi" style="margin-right: 20px">
+                                        <img class="flag" height="16px" src="{{ asset('assets/front/img/vn.svg') }}" alt="Vietnam Flag">
+                                    </a>
+                                    <a href="?lang=en">
+                                        <img class="flag" height="16px" src="{{ asset('assets/front/img/gb.svg') }}" alt="United Kingdom Flag">
+                                    </a>
+
                                 </ul>
                             </nav>
                         </div>
@@ -178,7 +182,7 @@
                                        </button>
                                         <form action="#">
                                             <div class="top-search-box">
-                                                <input type="text" placeholder="Search here your product...">
+                                                <input type="text" placeholder="{{ __('front.place_search') }}">
                                                 <button type="submit">
                                                     <i class="zmdi zmdi-search"></i>
                                                 </button>

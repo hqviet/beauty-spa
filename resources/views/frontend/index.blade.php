@@ -1,5 +1,8 @@
 @extends('frontend.layout.app')
 @section('title', 'Home')
+@section('slider')
+@include('frontend.layout.slider')
+@endsection
 @section('content')
 
     <!-- Start page content -->

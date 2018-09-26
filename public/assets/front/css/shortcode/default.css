@@ -4,8 +4,8 @@
   Author: codecarnival
   Version: 1.0
   Design and Developed by: codecarnival
-  NOTE: This is main style sheet of template, 
-  This file contains the styling for the actual Template. 
+  NOTE: This is main style sheet of template,
+  This file contains the styling for the actual Template.
   Please do not change anything here! write in a custom.css file if required!
 
 */
@@ -19,38 +19,38 @@
     3.2 buttons variation
   4. social-icon
   5. Text color
-  6. Input 
-  7. submit button hover 
-  8. back-to-top 
-  9. slick-arrow 
+  6. Input
+  7. submit button hover
+  8. back-to-top
+  9. slick-arrow
     9.1 slick-arrow-1
     9.2 slick-arrow-2
     9.3 slick-arrow-3
   10. slick-dots
     10.1 slick-dots-1
-  11. quick view (modal)  
-  12. Basic margin padding  
-    12.1 Margin top 
-    12.2 Margin right  
-    12.3 Margin bottom 
-    12.4 Margin left 
-    12.5 Padding top 
-    12.6 Padding right   
-    12.7 Padding bottom    
-    12.8 Padding left  
-    12.9 Page section padding    
-    12.10 Page section margin     
+  11. quick view (modal)
+  12. Basic margin padding
+    12.1 Margin top
+    12.2 Margin right
+    12.3 Margin bottom
+    12.4 Margin left
+    12.5 Padding top
+    12.6 Padding right
+    12.7 Padding bottom
+    12.8 Padding left
+    12.9 Page section padding
+    12.10 Page section margin
     12.11 Extra padding & margin
-  13. Scroll Up 
+  13. Scroll Up
   14. Extra class (Custom cloumn)
-  15. box-shadow 
-  16. Background variation set 
+  15. box-shadow
+  16. Background variation set
   17. Opacity background
   18. image background
   19. tooltip
   20. separator
-  21. Section title 1   
-  22. section title 2 
+  21. Section title 1
+  22. section title 2
 
 ======================================
 [ End table content ]
@@ -102,10 +102,10 @@ input {
   outline: medium none;
   color: #666666;
 }
-.uppercase { 
+.uppercase {
   text-transform: uppercase
 }
-.capitalize { 
+.capitalize {
   text-transform: capitalize
 }
 h1,
@@ -126,8 +126,8 @@ h2 a,
 h3 a,
 h4 a,
 h5 a,
-h6 a { 
-  color: inherit 
+h6 a {
+  color: inherit
 }
 h1 {
   font-size: 30px;
@@ -152,8 +152,8 @@ ul {
   margin: 0px;
   padding: 0px;
 }
-li { 
-  list-style: none; 
+li {
+  list-style: none;
 }
 p {
   font-size: 13px;
@@ -572,9 +572,10 @@ a.button.extra-small i { padding: 11px; width: 38px; font-size: 13px; }
 .text-theme { color: #ff7f00; }
 
 /*************************
-  6. Input 
+  6. Input
 *************************/
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   background: #fff none repeat scroll 0 0;
   border: 1px solid transparent;
@@ -641,7 +642,7 @@ textarea:focus {
 }
 
 /*************************
-  7. submit button hover 
+  7. submit button hover
 *************************/
 .btn-hover-1,
 .btn-hover-2 {
@@ -667,7 +668,7 @@ textarea:focus {
   background: #ff7f00 none repeat scroll 0 0;
 }
 /*************************
-  8. back-to-top 
+  8. back-to-top
 *************************/
 #back-to-top .top {
   z-index: 999;
@@ -694,7 +695,7 @@ textarea:focus {
 }
 #back-to-top .top { background: #007da1; }
 /*************************
-  9. slick-arrow 
+  9. slick-arrow
 *************************/
 /* 9.1 slick-arrow-1 */
 .slick-arrow-1 .slick-arrow {
@@ -940,7 +941,7 @@ textarea:focus {
 }
 
 /*************************
-  12. Basic margin padding  
+  12. Basic margin padding
 *************************/
 .m-0 {
     margin: 0;
@@ -949,7 +950,7 @@ textarea:focus {
     padding: 0;
 }
 /*************************
-    12.1 Margin top 
+    12.1 Margin top
 *************************/
 .mt-0 { margin-top: 0 }
 .mt-10 { margin-top: 10px }
@@ -970,7 +971,7 @@ textarea:focus {
 .mt-140 { margin-top: 140px }
 .mt-150 { margin-top: 150px }
 /*************************
-    12.2 Margin right  
+    12.2 Margin right
 *************************/
 .mr-0 { margin-right: 0px }
 .mr-10 { margin-right: 10px }
@@ -990,7 +991,7 @@ textarea:focus {
 .mr-140 { margin-right: 140px }
 .mr-150 { margin-right: 150px }
 /*************************
-    12.3 Margin bottom 
+    12.3 Margin bottom
 *************************/
 .mb-0 { margin-bottom: 0 }
 .mb-5 { margin-bottom: 5px }
@@ -1013,7 +1014,7 @@ textarea:focus {
 .mb-140 { margin-bottom: 140px }
 .mb-150 { margin-bottom: 150px }
 /*************************
-    12.4 Margin left 
+    12.4 Margin left
 *************************/
 .ml-0 { margin-left: 0 }
 .ml-10 { margin-left: 10px }
@@ -1055,7 +1056,7 @@ textarea:focus {
 .pt-150 { padding-top: 150px }
 .pt-160 { padding-top: 160px }
 /*************************
-    12.6 Padding right 
+    12.6 Padding right
 *************************/
 .pr-0 { padding-right: 0 }
 .pr-10 { padding-right: 10px }
@@ -1074,7 +1075,7 @@ textarea:focus {
 .pr-130 { padding-right: 130px }
 .pr-140 { padding-right: 140px }
 /*************************
-    12.7 Padding bottom  
+    12.7 Padding bottom
 *************************/
 .pb-0 { padding-bottom: 0 }
 .pb-10 { padding-bottom: 10px }
@@ -1097,7 +1098,7 @@ textarea:focus {
 .pb-150 { padding-bottom: 150px }
 .pb-160 { padding-bottom: 160px }
 /*************************
-    12.8 Padding left 
+    12.8 Padding left
 *************************/
 .pl-0 { padding-left: 0 }
 .pl-10 { padding-left: 10px }
@@ -1117,7 +1118,7 @@ textarea:focus {
 .pl-140 { padding-left: 140px }
 .pl-150 { padding-left: 150px }
 /***************************
-    12.9 Page section padding   
+    12.9 Page section padding
 ****************************/
 .ptb-0 { padding: 0 }
 .ptb-10 { padding: 10px 0 }
@@ -1137,7 +1138,7 @@ textarea:focus {
 .ptb-150 { padding: 150px 0 }
 .ptb-160 { padding: 160px 0 }
 /***************************
-    12.10 Page section margin 
+    12.10 Page section margin
 ****************************/
 .mtb-0 { margin: 0 }
 .mtb-10 { margin: 10px 0 }
@@ -1185,7 +1186,7 @@ textarea:focus {
   margin-top: -50px;
 }
 /***************************
-  13. Scroll Up 
+  13. Scroll Up
 ****************************/
 #scrollUp {
   background: #ccc;
@@ -1246,12 +1247,12 @@ textarea:focus {
     width: 100%;
 }
 /*************************************
-  15. box-shadow 
+  15. box-shadow
  **************************************/
 .box-shadow {  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1); }
 
 /*************************************
-  16. Background variation set 
+  16. Background variation set
  **************************************/
 /*colored background*/
 .theme-bg { background: #ff7f00; }
@@ -1263,31 +1264,31 @@ textarea:focus {
 .transparent-bg { background: transparent; }
 
 /*background-change with color change*/
-.footer-area .theme-bg p, 
+.footer-area .theme-bg p,
 .footer-area .black-bg p,
-.footer-area .theme-bg h4, 
+.footer-area .theme-bg h4,
 .footer-area .black-bg h4,
-.footer-area .theme-bg .footer-menu li a, 
+.footer-area .theme-bg .footer-menu li a,
 .footer-area .black-bg .footer-menu li a,
-.footer-area .theme-bg .footer-social li a, 
-.footer-area .black-bg .footer-social li a { 
+.footer-area .theme-bg .footer-social li a,
+.footer-area .black-bg .footer-social li a {
   color: #fff;
 }
-.footer-area .theme-bg .footer-social li a, 
+.footer-area .theme-bg .footer-social li a,
 .footer-area .black-bg .footer-social li a {
   border: 1px solid #fff;
 }
-.footer-area .theme-bg .footer-menu li:hover a, 
+.footer-area .theme-bg .footer-menu li:hover a,
 .footer-area .black-bg .footer-menu li:hover a,
-.footer-area .theme-bg .footer-menu li:hover a i, 
+.footer-area .theme-bg .footer-menu li:hover a i,
 .footer-area .black-bg .footer-menu li:hover a i {
   color: #444;
 }
-.footer-area .theme-bg .footer-menu li a i, 
+.footer-area .theme-bg .footer-menu li a i,
 .footer-area .black-bg .footer-menu li a i {
   color: #fff;
 }
-.footer-area .theme-bg .submit-btn-1, 
+.footer-area .theme-bg .submit-btn-1,
 .footer-area .black-bg .submit-btn-1 {
   background: #fff none repeat scroll 0 0;
   color: #000;
@@ -1296,10 +1297,10 @@ textarea:focus {
   17. Opacity background
  **************************************/
  .bg-opacity-black-10, .bg-opacity-black-20, .bg-opacity-black-30, .bg-opacity-black-40, .bg-opacity-black-50, .bg-opacity-black-60, .bg-opacity-black-70, .bg-opacity-black-80, .bg-opacity-black-90,  .bg-opacity-white-10,  .bg-opacity-white-20,  .bg-opacity-white-30,  .bg-opacity-white-40,  .bg-opacity-white-50,  .bg-opacity-white-60,  .bg-opacity-white-70,  .bg-opacity-white-80,  .bg-opacity-white-90{
-    z-index: 9; 
+    z-index: 9;
  }
  .bg-opacity-black-10:before, .bg-opacity-black-20:before, .bg-opacity-black-30:before, .bg-opacity-black-40:before, .bg-opacity-black-50:before, .bg-opacity-black-60:before, .bg-opacity-black-70:before, .bg-opacity-black-80:before, .bg-opacity-black-90:before,  .bg-opacity-white-10:before,  .bg-opacity-white-20:before,  .bg-opacity-white-30:before,  .bg-opacity-white-40:before,  .bg-opacity-white-50:before,  .bg-opacity-white-60:before,  .bg-opacity-white-70:before,  .bg-opacity-white-80:before,  .bg-opacity-white-90:before{
-    content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: -1; 
+    content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: -1;
  }
  .bg-opacity-black-10:before {  background: rgba(0, 0, 0, 0.1);}
  .bg-opacity-black-20:before {  background: rgba(0, 0, 0, 0.2);}
@@ -1454,7 +1455,7 @@ textarea:focus {
   right: 0;
 }
 /*************************
-  21. Section title 1 
+  21. Section title 1
 ***********************/
 .section-title {}
 .section-title h2 {
@@ -1490,7 +1491,7 @@ textarea:focus {
     width: 60px;
 }
 /*************************
-  22. section title 2 
+  22. section title 2
 *************************/
 .section-title-2 { margin-bottom: 60px }
 .section-title-2 h1 { margin-bottom: 0px }

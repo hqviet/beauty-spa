@@ -156,18 +156,33 @@
                                     <div class="col-md-12">
                                         <h4 class="blog-section-title border-left mb-30">get in touch</h4>
                                     </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="name" placeholder="Your name here">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type=text name="email" placeholder="Your email here">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="phone" placeholder="Your phone here">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" id="datepicker" placeholder="Date appointment">
-                                    </div>
+                                    @if ($user = Sentinel::getUser())
+                                        <div class="col-md-6">
+                                            <input type="text" name="name" placeholder="Your name here" value="{{ $user->first_name }}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type=text name="email" placeholder="Your email here" value="{{ $user->email }}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="phone" placeholder="Your phone here" value="{{ $user->phone }}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" id="datepicker" placeholder="Date appointment" value="{{ $user->datepicker }}">
+                                        </div>
+                                    @else
+                                        <div class="col-md-6">
+                                            <input type="text" name="name" placeholder="Your name here">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type=text name="email" placeholder="Your email here">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="phone" placeholder="Your phone here">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" id="datepicker" placeholder="Date appointment">
+                                        </div>
+                                    @endif
                                     <div class="col-md-12">
                                         <textarea class="custom-textarea" name="message" placeholder="Message"></textarea>
                                         <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">submit</button>

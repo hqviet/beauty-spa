@@ -36,7 +36,7 @@ class Service extends Model
             $language = app()->getLocale();
         }
         return $this->hasMany(ServiceTranslation::class, 'services_id', 'id')
-            ->where('lang', '=', $language)->first();
+            ->where('lang', '=', $language);
     }
 
     public static function listServices($lang = null)
@@ -47,11 +47,11 @@ class Service extends Model
 
         return self::select('services.id', 'slug', 'category_service_id',
             'image' ,'price', 'st.name AS s_name', 'cst.name AS cst_name', 'short_description', 'description')
-            ->leftJoin('services_translations AS st', function($join) use ($lang){
+            ->join('services_translations AS st', function($join) use ($lang){
                 $join->on('services.id', '=', 'st.services_id')
                     ->where('st.lang', '=', $lang);
             })
-            ->leftJoin('category_services_translations AS cst', function($join) use ($lang) {
+            ->join('category_services_translations AS cst', function($join) use ($lang) {
                 $join->on('services.category_service_id', '=', 'cst.category_services_id')
                     ->where('cst.lang', '=', $lang);
             })->orderBy('services.id', 'DESC');

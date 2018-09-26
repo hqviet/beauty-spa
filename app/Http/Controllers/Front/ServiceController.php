@@ -33,7 +33,10 @@ class ServiceController extends Controller
         if(!$service){
             abort(404);
         }
-        $service_t = $service->translation();
+        $service_t = $service->translation()->first();
+        if(!$service_t) {
+            abort(404);
+        }
 
         return view('frontend.service.detail_service', compact('service_t'));
     }

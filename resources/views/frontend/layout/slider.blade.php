@@ -8,7 +8,7 @@
                         <div class="col-md-12">
                             <div class="layer-1">
                                 <div class="slider-img">
-                                    <img style="height:450px;" src="{{ asset('assets/front/images/banner.jpg') }}" alt="">
+                                    <img style="" src="{{ asset('assets/front/images/banner.jpg') }}" alt="">
                                 </div>
                                 <div class="slider-info gray-bg">
                                     <div class="slider-info-inner">

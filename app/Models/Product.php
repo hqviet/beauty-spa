@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $table = 'products';
     protected $fillable = [
-        'name', 'slug', 'brand_id', 'category_id', 'description', 'price', 'quantity', 'image', 'status'
+       'slug', 'brand_id', 'category_id', 'price', 'quantity', 'image', 'status'
     ];
     protected $dates = ['deleted_at'];
 
@@ -23,5 +23,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo('App\Models\Category', 'category_id');
+    }
+
+    public function productTran()
+    {
+        return $this->hasMany('App\Models\ProductTran');
     }
 }

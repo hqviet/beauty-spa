@@ -51,8 +51,8 @@
                                         aria-describedby="example2_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Image</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Name</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Slug</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Category</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Brand</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Price</th>
@@ -63,8 +63,9 @@
                                         <tbody>
                                                 @forelse ($products as $product)
                                                 <tr class="text-center">
-                                                    <td><img style="width: 100px;" src="http://placehold.it/150x100" alt=""></td>
-                                                    <td>{{ $product->name }}</td>
+                                                    
+                                                    <td>{{ $product->id }}</td>
+                                                    <td>{{ $product->slug }}</td>
                                                     <td>{{ $product->category->name }}</td>
                                                     <td>{{ $product->brand->name }}</td>
                                                     <td>{{ $product->price }}</td>

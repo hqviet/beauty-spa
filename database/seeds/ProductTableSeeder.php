@@ -16,16 +16,24 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         for ($i=0; $i < 40; $i++) { 
-            $name = 'Product seed no.' . random_int(1, 10000);
-            DB::table('products')->insert([
-                'name' => $name,
-                'slug' => str_slug($name),
+            $id = DB::table('products')->insertGetId([
+                'slug' => str_slug('product' . $i),
                 'brand_id' => random_int(1, 5),
                 'category_id' => random_int(1, 3),
                 'price' => random_int(10, 1000),
                 'quantity' => random_int(0, 50),
-                'desc_en' => '[en] description',
-                'desc_vi' => '[vi] description',
+            ]);
+            DB::table('product_trans')->insert([
+                'product_id' => $id,
+                'name' => 'product ' . $i,
+                'lang' => 'en',
+                'description' => '[en] lorem ipsum'
+            ]);
+            DB::table('product_trans')->insert([
+                'product_id' => $id,
+                'name' => 'san pham ' . $i,
+                'lang' => 'vi',
+                'description' => '[vi] lorem ipsum'
             ]);
         }    
     }

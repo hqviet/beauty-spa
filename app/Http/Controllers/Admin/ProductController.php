@@ -145,4 +145,7 @@ class ProductController extends Controller
             'message' => 'Product has been updated succesfully!'
         ]);
     }
+
+    private function editProductLang() 
+    {}
 }

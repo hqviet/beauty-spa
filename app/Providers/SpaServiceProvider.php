@@ -18,34 +18,18 @@ class SpaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['frontend.layout.header'], function ($view) {
+        View::composer([
+            'frontend.layout.header', 
+            'frontend.product_in_brand',
+            'frontend.home.brand',
+            'frontend.product_in_category',
+            'frontend.layout.mobile_menu'
+        ], function ($view) {
             $category_services = CategoryServiceTranslation::all();
             $categories = Category::all();
             $brands = Brand::all();
             $view->with([
                 'category_services' => $category_services,
-                'categories' => $categories,
-                'brands' => $brands
-                ]);
-        });
-        View::composer(['frontend.product_in_brand'], function ($view) {
-            $categories = Category::all();
-            $brands = Brand::all();
-            $view->with([
-                'categories' => $categories,
-                'brands' => $brands
-                ]);
-        });
-        View::composer(['frontend.home.brand'], function ($view) {
-            $brands = Brand::all();
-            $view->with([
-                'brands' => $brands
-                ]);
-        });
-        View::composer(['frontend.product_in_category'], function ($view) {
-            $categories = Category::all();
-            $brands = Brand::all();
-            $view->with([
                 'categories' => $categories,
                 'brands' => $brands
                 ]);

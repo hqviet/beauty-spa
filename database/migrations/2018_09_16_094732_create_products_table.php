@@ -17,16 +17,23 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('name', 128)->unique();
-            $table->string('slug', 128)->unique();
             $table->integer('brand_id')->unsigned();    
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->string('slug', 128)->unique();
             $table->string('price');
             $table->unsignedInteger('quantity');
             $table->string('image')->default('');
             $table->integer('enable')->default('1');
-            $table->longText('desc_en');
-            $table->longText('desc_vi')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+        Schema::create('product_trans', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 128)->unique();
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->string('lang');
+            $table->longText('description');
             $table->timestamps();
             $table->softDeletes();
         });

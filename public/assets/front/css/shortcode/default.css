@@ -575,6 +575,7 @@ a.button.extra-small i { padding: 11px; width: 38px; font-size: 13px; }
   6. Input 
 *************************/
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   background: #fff none repeat scroll 0 0;
   border: 1px solid transparent;

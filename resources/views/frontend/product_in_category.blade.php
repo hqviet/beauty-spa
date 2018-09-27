@@ -19,9 +19,6 @@
                         <div class="shop-option box-shadow mb-30 clearfix">
                             <!-- Nav tabs -->
                             <ul class="shop-tab f-left" role="tablist">
-                                <li>
-                                    <a href="#grid-view" data-toggle="tab"><i class="zmdi zmdi-view-module"></i></a>
-                                </li>
                                 <li class="active">
                                     <a href="#list-view" data-toggle="tab"><i class="zmdi zmdi-view-list-alt"></i></a>
                                 </li>

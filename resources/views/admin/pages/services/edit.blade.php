@@ -70,7 +70,7 @@
                                     <div class="form-group">
                                         <label for="image" class="col-sm-2 control-label">Ảnh </label>
                                         <div class="col-sm-10 {{$errors->has('image')? 'has-error' : ''}}">
-                                            <img src="{{ asset('assets/admin/image_service') }}/{{$services->image}}" alt="" style="width: 100px; margin-bottom: 20px">
+                                            <img src="{{ asset('assets/admin/image_service/'.$services->image)}}" alt="" style="width: 100px; margin-bottom: 20px">
 
                                             <input type="file" id="image" name="image">
                                             <span
@@ -83,7 +83,7 @@
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-10 {{$errors->has('short_description')? 'has-error' : ''}}">
                                             <textarea class="ckeditor" name="short_description" rows="10"
-                                                      id="short_description"  cols="80" required>{{ $services->translation('vi')->short_description }}</textarea>
+                                                      id="short_description"  cols="80" required>{{ $services->translation('vi')->first()->short_description }}</textarea>
                                             <span class="help-block">{{$errors->has('short_description')? $errors->first('short_description') : ''}}</span>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-10 {{$errors->has('description')? 'has-error' : ''}}">
                                             <textarea class="ckeditor" name="description" rows="10"
-                                                      cols="80" required>{{ $services->translation('vi')->description }}</textarea>
+                                                      cols="80" required>{{ $services->translation('vi')->first()->description }}</textarea>
                                             <span
                                                 class="help-block">{{$errors->has('description')? $errors->first('description') : ''}}</span>
                                         </div>
@@ -152,7 +152,7 @@
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-10 {{$errors->has('title')? 'has-error' : ''}}">
                                             <input type="text" class="form-control" id="title"
-                                                   name="title" value="{{ isset($services->translation('en')->name)?$services->translation('en')->name:'' }}" required>
+                                                   name="title" value="{{ isset($services->translation('en')->first()->name)?$services->translation('en')->first()->name:'' }}" required>
                                             <span
                                                 class="help-block">{{$errors->has('title')? $errors->first('title') : ''}}</span>
                                         </div>
@@ -162,7 +162,7 @@
                                         <label for="image" class="col-sm-2 control-label">Image <span
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-10 {{$errors->has('image')? 'has-error' : ''}}">
-                                            <img src="{{ asset('assets/admin/image_service') }}/{{$services->image}}" alt="" style="width: 100px; margin-bottom: 20px">
+                                            <img src="{{ asset('assets/admin/image_service/'.$services->image) }}" alt="" style="width: 100px; margin-bottom: 20px">
                                             <input type="file" id="image" name="image">
                                             <span
                                                 class="help-block">{{$errors->has('image')? $errors->first('image') : ''}}</span>
@@ -174,7 +174,7 @@
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-10 {{$errors->has('short_description')? 'has-error' : ''}}">
                                             <textarea class="ckeditor" name="short_description" rows="10"
-                                                      id="short_description"  cols="80" required>{{ isset($services->translation('en')->short_description)?$services->translation('en')->short_description:'' }}</textarea>
+                                                      id="short_description"  cols="80" required>{{ isset($services->translation('en')->first()->short_description)?$services->translation('en')->first()->short_description:'' }}</textarea>
                                             <span class="help-block">{{$errors->has('short_description')? $errors->first('short_description') : ''}}</span>
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-10 {{$errors->has('description')? 'has-error' : ''}}">
                                             <textarea class="ckeditor" name="description" rows="10"
-                                                      cols="80" required>{{ isset($services->translation('en')->description)?$services->translation('en')->description:'' }}</textarea>
+                                                      cols="80" required>{{ isset($services->translation('en')->first()->description)?$services->translation('en')->first()->description:'' }}</textarea>
                                             <span
                                                 class="help-block">{{$errors->has('description')? $errors->first('description') : ''}}</span>
                                         </div>

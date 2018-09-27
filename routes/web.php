@@ -38,6 +38,21 @@ Route::group(
         Route::get('category/{slug}', 'ProductController@showProductInCategory')->name('product.list.category');
         // Products in brand
         Route::get('brand/{slug}', 'ProductController@showProductInBrand')->name('product.list.brand');
+
+        Route::get('service', 'ServiceController@service')->name('service');
+
+        Route::get('category-service/{slug}', 'ServiceController@category')->name('category-service');
+
+        Route::get('service-detail/{slug}', 'ServiceController@serviceDetail')->name('service-detail');
+
+        Route::get('login', 'UserController@login')->name('login');
+
+        Route::post('login', 'UserController@processLogin')->name('login');
+
+        Route::post('register', 'UserController@processRegister')->name('register');
+
+        Route::get('logout', 'UserController@logout')->name('logout');
+        
     });
 
 Route::group(

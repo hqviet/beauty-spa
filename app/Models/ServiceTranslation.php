@@ -20,4 +20,9 @@ class ServiceTranslation extends Model
         'short_description',
         'description'
     ];
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'services_id', 'id');
+    }
 }

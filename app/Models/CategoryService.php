@@ -12,4 +12,9 @@ class CategoryService extends Model
         'slug',
         'status',
     ];
+
+    public function categoryServiceTranslation()
+    {
+        return $this->hasMany(CategoryServiceTranslation::class, 'category_services_id', 'id');
+    }
 }

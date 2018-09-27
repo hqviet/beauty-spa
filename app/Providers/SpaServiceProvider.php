@@ -25,7 +25,7 @@ class SpaServiceProvider extends ServiceProvider
             'frontend.product_in_category',
             'frontend.layout.mobile_menu'
         ], function ($view) {
-            $category_services = CategoryServiceTranslation::all();
+            $category_services = CategoryServiceTranslation::listCategoryServiceTranslation()->get();
             $categories = Category::all();
             $brands = Brand::all();
             $view->with([

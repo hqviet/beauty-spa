@@ -11,5 +11,8 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 composer.lock
+<<<<<<< HEAD
 .editor-config
+=======
+>>>>>>> QuanNguyen
 .phpunit.result.cache

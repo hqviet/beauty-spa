@@ -29,4 +29,12 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductTran');
     }
+
+    public function listProduct($lang = null)
+    {
+        if ($lang == null) {
+            $lang = app()->getLocale();
+        }
+        
+    }
 }

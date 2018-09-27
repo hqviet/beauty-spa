@@ -70,7 +70,10 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        return redirect()->route('front.index');
+        return redirect()->route('front.index')->with('signup_message', [
+            'status' => 'success',
+            'message' => 'Sign up successfully!'
+        ]);
     }
 
     public function logout(Request $request)

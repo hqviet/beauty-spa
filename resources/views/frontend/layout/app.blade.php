@@ -56,6 +56,7 @@
     <script src="{{ asset('assets/front/js/plugins.js') }}"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="{{ asset('assets/front/js/main.js') }}"></script>
+    <script src="{{ asset('assets/front/js/notify/bootstrap-notify.js') }}"></script>
     <script>
         
         $('.quick-view').click(function (e) {
@@ -92,8 +93,7 @@
             });
             $('#productModal').modal('hide');
         });
-
-
+        
     </script>
     @yield('scripts')
 

@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function showProductDetail($slug, Request $request)
     {
         // $slug = $request->get('slug');
-        $product = $this->product->where('slug', '=', $slug)->first();
+        $product = Product::singleProduct($slug, app()->getLocale());
         $options = [
             'product' => $product
         ];

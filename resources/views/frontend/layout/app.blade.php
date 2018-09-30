@@ -69,6 +69,7 @@
             $('#product-price').text('$ ' + product.price);
             $('#product-img').attr('src', product.image);
             $('#add-to-cart').attr('data-id', product.id);
+            $('#product-description').text(product.description);
             $('#productModal').modal('toggle');            
         });   
 
@@ -81,11 +82,10 @@
                     _token: '{{ Session::token() }}',
                     product_id: $(this).data('id')
                 },
-                dataType: 'json',
                 success: function(data) {
-                    // console.log(data);
+                    console.log(data);
                     $('.cart-quantity').empty().text(data.totalItems);
-                    notify('bottom', 'center', '&gt;', "" + data.status, 'animated fadeInDown', 'animated fadeOutUp', "" + data.message);
+                    // notify('bottom', 'center', '&gt;', "" + data.status, 'animated fadeInDown', 'animated fadeOutUp', "" + data.message);
                 },
                 error: function() {
                     alert('fail');

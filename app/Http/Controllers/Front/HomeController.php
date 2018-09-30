@@ -17,7 +17,7 @@ class HomeController extends Controller
         $services = Service::listServices($lang)->take(6)->get();
         $categories = Category::select('name', 'slug')->get();
         $brands = Brand::select('name', 'slug')->get();
-        $products = Product::all();
+        $products = Product::listProduct($lang);
         return view('frontend.index', [
             'services' => $services,
             'categories' => $categories,

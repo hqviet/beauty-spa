@@ -27,8 +27,8 @@
                                         <a class="button small add-to-cart" id="add-to-cart" data-id="" href="#"><span>Add to cart </span> </a>
                                     </div>
                                 </div>
-                                <div class="quick-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero.
+                                <div class="quick-desc" id="product-description">
+                                   
                                 </div>
                                 <div class="social-sharing">
                                     <div class="widget widget_socialsharing_widget">

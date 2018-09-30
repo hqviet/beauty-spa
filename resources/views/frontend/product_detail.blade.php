@@ -20,7 +20,7 @@
                         <!-- single-product-info start -->
                         <div class="col-md-7 col-sm-7 col-xs-12">
                             <div class="single-product-info">
-                                <h3 class="text-black-1">{{ $product->name }}</h3>
+                                <h3 class="text-black-1 text-uppercase">{{ $product->name }}</h3>
                                 <h6 class="brand-name-2">{{ $product->brand->name }}</h6>
                                 <!-- hr -->
                                 <hr>
@@ -36,7 +36,7 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active" id="description">
-                                           {{ $product->desc_en }}
+                                           {{ $product->description }}
                                         </div>
                                         <div role="tabpanel" class="tab-pane" id="reviews">
                                             <!-- reviews-tab-desc -->

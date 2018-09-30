@@ -30,7 +30,7 @@
                                             <tr>
                                                 <td class="product-thumbnail text-center">
                                                     <h6 class="product-title-2">
-                                                        <a href="#">{{ $item->name }}</a>
+                                                        <a href="{{ route('front.product.detail', ['slug' => $item->name]) }}">{{ $item->name }}</a>
                                                     </h6>
                                                 </td>
                                                 <td class="product-price">$ {{ $item->price }}</td>

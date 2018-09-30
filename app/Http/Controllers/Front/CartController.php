@@ -40,10 +40,11 @@ class CartController extends Controller
         $status = '';
         $message = '';
         $product = $this->product->find($id);
+
         if ($product->quantity > 0) {
             Cart::add([
                 'id' => $product->id,
-                'name' => $product->name,
+                'name' => $product->slug,
                 'qty' => 1,
                 'price' => $product->price,
             ]);
@@ -54,6 +55,7 @@ class CartController extends Controller
             $message = 'Fail to add item!';
         }
         $totalItems = Cart::count();
+
         return response()->json([
             'totalItems' => $totalItems,
             'status' => $status,

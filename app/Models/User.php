@@ -36,4 +36,6 @@ class User extends EloquentUser
         'password',
     ];
 
+    
+
 }

@@ -29,7 +29,7 @@ class CreateProductsTable extends Migration
         });
         Schema::create('product_trans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 128)->unique();
+            $table->string('name', 128);
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('lang');

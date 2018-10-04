@@ -82,24 +82,34 @@ Route::group(
             Route::post('change-password', 'Auth\ProfileController@changePassword')->name('profile.change-password');
 
             //product
-            Route::get('/list-product', 'ProductController@showList')->name('product.list');
+            Route::get('/product/list', 'ProductController@showList')->name('product.list');
 
-            Route::post('/list-product', 'ProductController@search')->name('product.search');
+            // Route::post('/product/list', 'ProductController@search')->name('product.search');
 
-            Route::get('/add-product', 'ProductController@showAddForm')->name('product.add.show');
+            Route::get('/product/add', 'ProductController@showAddForm')->name('product.add.show');
 
-            Route::post('/add-product', 'ProductController@addProduct')->name('product.add.handle');
+            Route::post('/product/add', 'ProductController@addProduct')->name('product.add.handle');
 
-            Route::post('/delete-product', 'ProductController@deleteProduct')->name('product.delete.handle');
+            Route::post('/product/delete', 'ProductController@deleteProduct')->name('product.delete.handle');
 
             //service
             Route::resource('service', 'ServiceController');
 
             Route::delete('service', 'ServiceController@delete')->name('service.delete');
 
-            Route::get('{id}/edit', 'ProductController@showEditForm')->name('product.edit.show');
+            Route::get('/product/edit/{id}', 'ProductController@showEditForm')->name('product.edit.show');
 
-            Route::post('/edit', 'ProductController@editProduct')->name('product.edit.handle');
+            Route::post('/product/edit', 'ProductController@editProduct')->name('product.edit.handle');
+
+            Route::get('/user/list', 'UserController@showList')->name('user.list');
+            
+            Route::get('/user/add', 'UserController@showAddForm')->name('user.add.show');
+            
+            Route::post('/user/add', 'UserController@addUser')->name('user.add.handle');
+            
+            Route::get('/user/edit/{id}', 'UserController@showEditForm')->name('user.edit.show');
+            
+            Route::post('/user/edit', 'UserController@editUser')->name('user.edit.handle');
 
         });
     });

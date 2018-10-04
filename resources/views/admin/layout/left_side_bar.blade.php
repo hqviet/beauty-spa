@@ -35,12 +35,12 @@ $menus = [
         'child' => [
             [
                 'title' => 'List User',
-                'url' => '#',
+                'url' => route('admin.user.list'),
                 'child' => null
             ],
             [
                 'title' => 'Add User',
-                'url' => '#',
+                'url' => route('admin.user.add.show'),
                 'child' => null
             ]
         ]

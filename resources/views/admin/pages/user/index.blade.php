@@ -1,20 +1,21 @@
 @extends('admin.layout.app')
-@section('title', 'Product')
+@section('title', 'User')
 @section('left_side_bar')
-@include('admin.layout.left_side_bar', ['active' => 'product'])
+@include('admin.layout.left_side_bar', ['active' => 'user'])
 @endsection
 @section('content')
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 
     <section class="content-header">
         <h1>
-            Product
-            <small>List product</small>
+            User
+            <small>List user</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">List product</li>
+            <li class="active">List user</li>
         </ol>
     </section>
 
@@ -41,34 +42,35 @@
                     <div class="box-body">
                         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                             <div class="row">
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-6"></div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-12">
-                                    <table id="product_table" class="table table-bordered table-hover dataTable" role="grid"
+                                    <table id="user_table" class="table table-bordered table-hover dataTable" role="grid"
                                         aria-describedby="example2_info">
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Slug</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Category</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Brand</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Price</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"colspan="1">Quantity</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Email</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Address</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Phone</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                @forelse ($products as $product)
+                                        
+                                                @forelse ($users as $user)
                                                 <tr class="text-center">
-                                                    
-                                                    <td>{{ $product->id }}</td>
-                                                    <td>{{ $product->slug }}</td>
-                                                    <td>{{ $product->category->name }}</td>
-                                                    <td>{{ $product->brand->name }}</td>
-                                                    <td>{{ $product->price }}</td>
-                                                    <td>{{ $product->quantity }}</td>
+                                                    <td>{{ $user->id }}</td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
+                                                    <td>{{ $user->address }}</td>
+                                                    <td>{{ $user->phone }}</td>
                                                     <td>
-                                                        <a href="{{ route('admin.product.edit.show', ['id' => $product->id]) }}" class="btn btn-info">Edit</a>
-                                                        <a href="#" class="btn btn-danger delete_btn" data-name="{{ $product->name }}"
-                                                            data-id="{{ $product->id }}" data-toggle="modal" data-target="#delete_dialog">Delete</a>
+                                                        <a href="{{ route('admin.user.edit.show', ['id' => $user->id]) }}" class="btn btn-info">Edit</a>
+                                                        <a href="#" class="btn btn-danger delete_btn" data-name="{{ $user->first_name . ' ' . $user->last_name }}" data-id="{{ $user->id }}" data-toggle="modal" data-target="#delete_dialog">Delete</a>
                                                     </td>
                                                 </tr>
                                                 @empty
@@ -76,11 +78,11 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th rowspan="1" colspan="1">Image</th>
+                                                <th rowspan="1" colspan="1">ID</th>
+                                                <th rowspan="1" colspan="1">Email</th>
                                                 <th rowspan="1" colspan="1">Name</th>
-                                                <th rowspan="1" colspan="1">Brand</th>
-                                                <th rowspan="1" colspan="1">Price</th>
-                                                <th rowspan="1" colspan="1">Quantity</th>
+                                                <th rowspan="1" colspan="1">Address</th>
+                                                <th rowspan="1" colspan="1">Phone</th>
                                                 <th rowspan="1" colspan="1">Action</th>
                                             </tr>
                                         </tfoot>
@@ -110,7 +112,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to permenantly delete <span class="text-danger" id="product_name"></span>?</p>
+                <p>Are you sure you want to permenantly delete <span class="text-danger" id="user_name"></span>?</p>
             </div>
             <div class="modal-footer">
                 <form action="{{ route('admin.product.delete.handle') }}" method="post">
@@ -127,12 +129,12 @@
 @section('scripts')
 <script>
     $('.delete_btn').click(function () {
-        $('#product_name').text($(this).data('name'));
+        $('#user_name').text($(this).data('name'));
         $('#delete_id').val($(this).data('id'));
     });
     
     $(function () {
-        $('#product_table').DataTable({
+        $('#user_table').DataTable({
             'paging': true,
             'lengthChange': true,
             'searching': true,

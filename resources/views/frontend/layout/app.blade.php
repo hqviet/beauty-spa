@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/front/lib/css/nivo-slider.css') }}">
     <!-- This core.css file contents all plugings css file. -->
     <link rel="stylesheet" href="{{ asset('assets/front/css/core.css') }}">
-    <!-- Theme shortcodes/elements style -->
+    <!-- T+-->
     <link rel="stylesheet" href="{{ asset('assets/front/css/shortcode/shortcodes.css') }}">
     <!-- Theme main style -->
     <link rel="stylesheet" href="{{ asset('assets/front/css/style.css') }}">

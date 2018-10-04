@@ -61,7 +61,7 @@
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-10 {{$errors->has('title')? 'has-error' : ''}}">
                                             <input type="text" class="form-control" id="title"
-                                                   name="title" value="{{ $services->translation('vi')->name }}" required>
+                                                   name="title" value="{{ $services->translation('vi')->first()->name }}" required>
                                             <span
                                                 class="help-block">{{$errors->has('title')? $errors->first('title') : ''}}</span>
                                         </div>

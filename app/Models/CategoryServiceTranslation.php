@@ -18,4 +18,13 @@ class CategoryServiceTranslation extends Model
     {
         return $this->belongsTo(CategoryService::class, 'category_services_id', 'id');
     }
+
+    public static function listCategoryServiceTranslation($lang = null)
+    {
+        if ($lang == null) {
+            $lang = app()->getLocale();
+        }
+
+        return self::where('lang', $lang);
+    }
 }

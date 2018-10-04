@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Requests\Front\LoginRequest;
 use App\Http\Requests\Front\RegisterRequest;
+use App\Http\Requests\Front\SetScheduleRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Sentinel;
@@ -11,6 +12,10 @@ use DB;
 use URL;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
+use App\Models\Service;
+use App\Models\Schedule;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SetSchedule;
 
 class UserController extends Controller
 {
@@ -70,7 +75,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        return redirect()->route('front.index');
+        return redirect()->route('front.index')->with('success', trans('front.register_success'));
     }
 
     public function logout(Request $request)
@@ -78,5 +83,24 @@ class UserController extends Controller
         $request->session()->forget('backUrl');
         Sentinel::logout();
         return redirect(route('front.login'));
+    }
+
+    public function setSchedule(SetScheduleRequest $request)
+    {
+        $data = $request->all();
+        $service = Service::findOrFail($data['services_id']);
+        if ($service) {
+            DB::beginTransaction();
+            try {
+                $schedule = Schedule::create($data);
+                Mail::to($request->email)->send(new SetSchedule($schedule, $service));
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return back()
+                    ->withInput()->withErrors(['err' => $e->getMessage()]);
+            }
+            DB::commit();
+        }
+        return redirect()->back()->with('success', trans('front.schedule_success'));
     }
 }

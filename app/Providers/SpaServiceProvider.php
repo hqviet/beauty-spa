@@ -17,7 +17,7 @@ class SpaServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['frontend.layout.header'], function ($view) {
-            $category_services = CategoryServiceTranslation::all();
+            $category_services = CategoryServiceTranslation::listCategoryServiceTranslation()->get();
             $view->with('category_services', $category_services);
         });
     }

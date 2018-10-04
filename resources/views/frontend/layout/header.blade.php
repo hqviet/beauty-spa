@@ -16,9 +16,9 @@
                             <ul class="link f-right">
                                 @if ($user = Sentinel::getUser())
                                 <li>
-                                    <a href="my-account.html">
+                                    <a href="#">
                                         <i class="zmdi zmdi-account"></i>
-                                        {{$user->first_name}}
+                                        {{$user->first_name.' '.$user->last_name}}
                                     </a>
                                 </li>
                                 <li>
@@ -64,11 +64,9 @@
                                         <div class="mega-menu-area clearfix">
                                             <div class="mega-menu-link mega-menu-link-4  f-left">
                                                 @foreach ($category_services as $cate)
-                                                    @if($cate->lang == session()->get('language'))
                                                     <ul class="single-mega-item">
                                                         <li class="menu-title"><a href="{{ route('front.category-service', $cate->categoryService->slug) }}">{{ $cate->name }}</a></li>
                                                     </ul>
-                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>

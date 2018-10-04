@@ -1,5 +1,9 @@
 @extends('frontend.layout.app')
 @section('title', 'Service')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/front/css/mycss.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@endsection
 @section('content')
     <section id="page-content" class="page-wrapper">
         <div class="breadcrumbs-section plr-200 mb-80">
@@ -150,37 +154,53 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="message-box box-shadow white-bg">
-                            <form id="contact-form" action="mail.php" method="post">
+                            <form action="{{ route('front.set-schedule') }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h4 class="blog-section-title border-left mb-30">get in touch</h4>
                                     </div>
+                                    @if ($errors->any())
+                                        <div class="col-md-12">
+                                        @foreach ($errors->all() as $err)
+                                            <p class="text-danger">{{ $err }}</p>
+                                        @endforeach
+                                        </div>
+                                    @endif
+                                    <div class="col-md-12">
+                                        <input type="hidden" value="{{ $service_t->services_id }}" name="services_id">
+                                    </div>
                                     @if ($user = Sentinel::getUser())
                                         <div class="col-md-6">
-                                            <input type="text" name="name" placeholder="Your name here" value="{{ $user->first_name }}">
+                                            <input type="text" name="name" placeholder="Your name here" value="{{ $user->first_name.' '.$user->last_name }}" required
+                                                   class=" {{$errors->has('name')? 'has-error' : ''}}">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type=text name="email" placeholder="Your email here" value="{{ $user->email }}">
+                                            <input type=text name="email" placeholder="Your email here" value="{{ $user->email }}" required
+                                                   class=" {{$errors->has('email')? 'has-error' : ''}}">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="phone" placeholder="Your phone here" value="{{ $user->phone }}">
+                                            <input type="text" name="phone" placeholder="Your phone here" value="{{ $user->phone }}" required
+                                                   class=" {{$errors->has('phone')? 'has-error' : ''}}">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" id="datepicker" placeholder="Date appointment" value="{{ $user->datepicker }}">
+                                            <input type="text" id="datepicker" name="date" placeholder="Date appointment" value="{{ date('Y-m-d') }}" required>
                                         </div>
                                     @else
                                         <div class="col-md-6">
-                                            <input type="text" name="name" placeholder="Your name here">
+                                            <input type="text" name="name" placeholder="Your name here" required
+                                                   class=" {{$errors->has('name')? 'has-error' : ''}}">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type=text name="email" placeholder="Your email here">
+                                            <input type=text name="email" placeholder="Your email here" required
+                                                   class=" {{$errors->has('email')? 'has-error' : ''}}">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="phone" placeholder="Your phone here">
+                                            <input type="text" name="phone" placeholder="Your phone here" required
+                                                   class=" {{$errors->has('phone')? 'has-error' : ''}}">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" id="datepicker" placeholder="Date appointment">
+                                            <input type="text" id="datepicker" name="date" placeholder="Date appointment" value="{{ date('Y-m-d') }}" required>
                                         </div>
                                     @endif
                                     <div class="col-md-12">
@@ -189,7 +209,6 @@
                                     </div>
                                 </div>
                             </form>
-                            <p class="form-messege"></p>
                         </div>
                     </div>
                 </div>
@@ -204,7 +223,7 @@
     <script src="{{ asset('assets/front/js/map.js') }}"></script>
     <!-- ajax-mail js -->
     <script src="{{ asset('assets/front/js/ajax-mail.js') }}"></script>
-    <script src="{{ asset('assets/admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $('#box').click(function(event){
             event.preventDefault();
@@ -215,7 +234,9 @@
         });
 
         $('#datepicker').datepicker({
-            autoclose: true
+            autoclose: true,
+            minDate: 0,
+            dateFormat: 'yy-mm-dd'
         })
     </script>
 

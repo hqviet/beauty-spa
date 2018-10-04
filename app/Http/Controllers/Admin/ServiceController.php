@@ -46,10 +46,9 @@ class ServiceController extends Controller
      */
     public function store(AddServiceRequest $request)
     {
+        $input = $request->all();
         DB::beginTransaction();
         try{
-            $input = $request->all();
-
             if ($request->hasFile('image'))
             {
                 $file = $request->file('image');
@@ -125,8 +124,6 @@ class ServiceController extends Controller
         if($service){
             DB::beginTransaction();
             try{
-                $input = $request->all();
-
                 $data_service = [
                     'category_service_id' => $input['cat_id'],
                     'price' => $input['price'],

@@ -1,18 +1,18 @@
 @extends('admin.layout.app')
 @section('title', 'Sevice')
 @section('left_side_bar')
-    @include('admin.layout.left_side_bar', ['active' => 'service'])
+    @include('admin.layout.left_side_bar', ['active' => 'schedule'])
 @endsection
 @section('content')
     <div class="content-wrapper" style="min-height: 1126px;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Service
+                Schedule
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Service List</li>
+                <li class="active">Sevice List</li>
             </ol>
         </section>
 
@@ -22,41 +22,46 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <a href="{{ route('admin.service.create') }}" class="btn btn-primary text-right">Create new service</a>
+                            <a href="{{ route('admin.schedule.create') }}" class="btn btn-primary text-right">Create new schedule</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             @include('admin.pages.common.message')
-                            <table id="service_table" class="table table-bordered table-hover">
+                            <table id="schedule_table" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Category</th>
-                                    <th>Title </th>
-                                    <th>Image</th>
-                                    <th>Description</th>
-                                    <th>Price (VNĐ)</th>
+                                    <th>Service</th>
+                                    <th>Name</th>
+                                    <th>Email </th>
+                                    <th>Phone</th>
+                                    <th>Date</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
                                     <th>Action </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @php($i = 0)
-                                @foreach($services as $service)
+                                @foreach($schedules as $schedule)
                                     @php($i++)
-                                <tr>
-                                    <td>{!! $i !!}</td>
-                                    <td>{!! $service->cst_name !!}</td>
-                                    <td>{!! $service->s_name !!}</td>
-                                    <td><img src="{{ asset('assets/admin/image_service') }}/{{$service->image}}" width="100px"></td>
-                                    <td>{!! $truncated = str_limit($service->description, 100, ' (...)'); !!}</td>
-                                    <td>{!! $service->price !!}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('admin.service.edit',$service->id) }}" class="btn btn-warning" title="Edit">
-                                            <i class="fa fa-pencil-square-o"></i></a>
-                                        <button class="btn btn-danger delete" data_id="{{ $service->id }}" data-name="{{ $service->s_name }}" title="Delete">
-                                            <i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{!! $i !!}</td>
+                                        <td><a href="{{ route('admin.service.edit',$schedule->services_id) }}" >{{ $schedule->service->translation('vi')->first()->name }}</a></td>
+                                        <td>{!! $schedule->name !!}</td>
+                                        <td>{!! $schedule->email !!}</td>
+                                        <td>{!! $schedule->phone !!}</td>
+                                        <td>{!! $schedule->date !!}</td>
+                                        <td>{!! $schedule->message !!}</td>
+                                        <td>{{ array_get(config('custom.status'), $schedule->status) }}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.schedule.edit',$schedule->id) }}" class="btn btn-warning" title="Edit">
+                                                <i class="fa fa-pencil-square-o"></i></a>
+                                            <button class="btn btn-danger delete" data-id="{{ $schedule->id }}" data-name="{{ $schedule->name }}" title="Delete">
+                                                <i class="fa fa-trash-o"></i></button>
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
@@ -77,7 +82,7 @@
     <div id="deleteModal" class="modal fade" role='dialog'>
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ route('admin.service.delete') }}" method="POST" id="frm_delete">
+                <form action="{{ route('admin.schedule.delete') }}" method="POST" id="frm_delete">
                     @csrf
                     <input type="hidden" name="_method" value="DELETE">
                     <div class="modal-header">
@@ -87,7 +92,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to permenantly delete <span class="text-danger" id="alert"></span>?!</p>
+                        <p>Are you sure you want to permenantly delete this record?!</p>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="id" value="" id="delete_id">
@@ -103,13 +108,13 @@
     <script type="text/javascript">
         <!--
         $('.delete').on('click', function(){
-            $('#delete_id').val($(this).attr('data_id'));
+            $('#delete_id').val($(this).attr('data-id'));
             $('#alert').text($(this).data('name'));
             $('#deleteModal').modal();
         });
         //-->
         $(function () {
-            $('#service_table').DataTable({
+            $('#schedule_table').DataTable({
                 'paging': true,
                 'lengthChange': true,
                 'searching': true,

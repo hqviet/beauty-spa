@@ -43,5 +43,7 @@ return[
     'place_search' => 'Search here your product...',
     'login_fail' => 'Login failed',
     'not_active' => 'Your account has not been activated!',
-    'block' => 'Your account is blocked within :delay seconds.'
+    'block' => 'Your account is blocked within :delay seconds.',
+    'register_success' => 'Sign Up Success',
+    'schedule_success' => 'Set the schedule successfully',
 ];

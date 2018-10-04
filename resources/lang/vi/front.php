@@ -43,5 +43,7 @@ return[
     'place_search' => 'Tìm kiếm sản phẩm...',
     'login_fail' => 'Đăng nhập thất bại',
     'not_active' => 'Tài khoản của bạn chưa được kích hoạt!',
-    'block' => 'Tài khoản của bạn đã bị khóa trong :delay giây'
+    'block' => 'Tài khoản của bạn đã bị khóa trong :delay giây',
+    'register_success' => 'Đăng ký thành công',
+    'schedule_success' => 'Đặt lịch thành công',
 ];

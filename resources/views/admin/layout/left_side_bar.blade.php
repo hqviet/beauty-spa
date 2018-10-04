@@ -62,6 +62,24 @@ $menus = [
                 'child' => null
             ]
         ]
+    ],
+    [
+        'title' => 'Schedule',
+        'slug' => 'schedule',
+        'icon' => '	fa fa-calendar',
+        'url' => '#',
+        'child' => [
+            [
+                'title' => 'List Schedule',
+                'url' => route('admin.schedule.index'),
+                'child' => null
+            ],
+            [
+                'title' => 'Add Schedule',
+                'url' => route('admin.schedule.create'),
+                'child' => null
+            ]
+        ]
     ]
 ];
 $active = isset($active) ? $active : '';

@@ -1,5 +1,5 @@
 @extends('admin.layout.app')
-@section('title', 'Sevice')
+@section('title', 'Service')
 @section('left_side_bar')
     @include('admin.layout.left_side_bar', ['active' => 'service'])
 @endsection
@@ -8,11 +8,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Sevice
+                Service
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Sevice</li>
+                <li class="active">Service</li>
             </ol>
         </section>
 

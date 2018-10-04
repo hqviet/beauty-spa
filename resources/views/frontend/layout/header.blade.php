@@ -11,32 +11,32 @@
                         </p>
 
                     </div>
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="top-link clearfix">
-                        <ul class="link f-right">
-                            @if ($user = Sentinel::getUser())
-                            <li>
-                                <a href="my-account.html">
-                                    <i class="zmdi zmdi-account"></i>
-                                    {{$user->first_name}}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('front.logout') }}">
-                                    <i class="zmdi zmdi-power-setting"></i>
-                                    {{ __('front.logout') }}
-                                </a>
-                            </li>
-                            @else
-                            <li>
-                                <a href="{{ route('front.login') }}">
-                                    <i class="zmdi zmdi-lock"></i>
-                                    {{ __('front.login') }}
-                                </a>
-                            </li>
-                            @endif
-                        </ul>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="top-link clearfix">
+                            <ul class="link f-right">
+                                @if ($user = Sentinel::getUser())
+                                <li>
+                                    <a href="#">
+                                        <i class="zmdi zmdi-account"></i>
+                                        {{$user->first_name.' '.$user->last_name}}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('front.logout') }}">
+                                        <i class="zmdi zmdi-power-setting"></i>
+                                        {{ __('front.logout') }}
+                                    </a>
+                                </li>
+                                @else
+                                <li>
+                                    <a href="{{ route('front.login') }}">
+                                        <i class="zmdi zmdi-lock"></i>
+                                        {{ __('front.login') }}
+                                    </a>
+                                </li>
+                                @endif
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,21 +54,21 @@
                                 <img src="{{ asset('assets/front/img/logo/logo.png') }}" alt="main logo">
                             </a>
                         </div>
-                    </div>
-                    <!-- primary-menu -->
-                    <div class="col-md-8 hidden-sm hidden-xs">
-                        <nav id="primary-menu">
-                            <ul class="main-menu text-center">
-                                <li><a href="{{ route('front.index') }}">{{ __('front.home') }}</a>
-                                </li>
-                                <li class="mega-parent"><a href="#">{{ __('front.services') }}</a>
-                                    <div class="mega-menu-area clearfix">
-                                        <div class="mega-menu-link mega-menu-link-4  f-left">
-                                            @foreach ($category_services as $cate)
-                                            <ul class="single-mega-item">
-                                                <li class="menu-title"><a href="#">{{ $cate->name }}</a></li>
-                                            </ul>
-                                            @endforeach
+                        <!-- primary-menu -->
+                        <div class="col-md-8 hidden-sm hidden-xs">
+                            <nav id="primary-menu">
+                                <ul class="main-menu text-center">
+                                    <li><a href="{{ route('front.index') }}">{{ __('front.home') }}</a>
+                                    </li>
+                                    <li class="mega-parent"><a href="#">{{ __('front.services') }}</a>
+                                        <div class="mega-menu-area clearfix">
+                                            <div class="mega-menu-link mega-menu-link-4  f-left">
+                                                @foreach ($category_services as $cate)
+                                                    <ul class="single-mega-item">
+                                                        <li class="menu-title"><a href="{{ route('front.category-service', $cate->categoryService->slug) }}">{{ $cate->name }}</a></li>
+                                                    </ul>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </li>

@@ -52,6 +52,10 @@ Route::group(
         Route::post('register', 'UserController@processRegister')->name('register');
 
         Route::get('logout', 'UserController@logout')->name('logout');
+
+        Route::get('logout', 'UserController@logout')->name('logout');
+
+        Route::post('set-schedule', 'UserController@setSchedule')->name('set-schedule');
         
     });
 
@@ -95,7 +99,17 @@ Route::group(
             //service
             Route::resource('service', 'ServiceController');
 
+            Route::put('service/edit-service/{id}', 'ServiceController@update')->name('service.service_edit');
+
             Route::delete('service', 'ServiceController@delete')->name('service.delete');
+
+            //schedule
+            Route::resource('schedule', 'ScheduleController')->except([
+                'destroy'
+            ]);
+
+            Route::delete('schedule', 'ScheduleController@delete')->name('schedule.delete');
+
 
             Route::get('/product/edit/{id}', 'ProductController@showEditForm')->name('product.edit.show');
 

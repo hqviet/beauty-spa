@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Sentinel;
+use DB;
 
 class UserController extends Controller
 {
@@ -32,7 +34,11 @@ class UserController extends Controller
 
     public function showAddForm(Request $request)
     {
+        $user = Sentinel::getUser();
+        $isAdmin = $user->permissions['administrator'];
+
         $options = [
+            'isAdmin' => $isAdmin,
             'role' => 'add',
             'action' => 'create',
             'id' => null,
@@ -70,19 +76,36 @@ class UserController extends Controller
 
     public function showEditForm($id, Request $request)
     {
-        $user = Sentinel::getUser();
+        $user = User::find($id);
         $isAdmin = $user->permissions['administrator'];
         $options = [
-            'role' => 'add',
-            'action' => 'create',
+            'user' => $user,
+            'role' => 'edit',
+            'action' => 'edit',
             'id' => $id,
             'isAdmin' => $isAdmin 
         ];
+        if ($isAdmin == true) {
+            $roles = DB::table('roles')->select('slug', 'name')->get();
+            $options['roles'] = $roles;
+        } 
         return view($this->user_form, $options);
     }
 
-    public function editUser(Request $request)
+    public function editUser(UpdateUserRequest $request)
     {
-
+        $user = Sentinel::findById($request->get('id'));
+        $role = $request->get('role', '');
+        $data = [
+            'first_name' => $request->get('firstname'),
+            'last_name' => $request->get('lastname'),
+            'address' => $request->get('address'),
+            'phone' => $request->get('phone')
+        ];
+        if ($role) {
+            $newRole = Sentinel::findRoleBySlug($role);
+            $newRole->user()->attach($user);
+        }
+        $user->update($data);
     }
 }

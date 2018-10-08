@@ -87,5 +87,21 @@ class UsersTableSeeder extends Seeder
         $member = Sentinel::registerAndActivate($member_data);
         $role = Sentinel::findRoleBySlug('user');
         $role->users()->attach($member);
+
+        $member_data = [
+            //'username' => 'member',
+            'first_name' => 'Member',
+            'last_name' => '1',
+            'email'    => 'member1@gmail.com',
+            'password' => 'member@123',
+            'permissions' => [
+                'administrator' => false,
+                'directorate' => false,
+            ]
+        ];
+
+        $member = Sentinel::registerAndActivate($member_data);
+        $role = Sentinel::findRoleBySlug('user');
+        $role->users()->attach($member);
     }
 }

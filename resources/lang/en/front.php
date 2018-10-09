@@ -46,4 +46,9 @@ return[
     'block' => 'Your account is blocked within :delay seconds.',
     'register_success' => 'Sign Up Success',
     'schedule_success' => 'Set the schedule successfully',
+    'information' => 'My Personal Information',
+    'save' => 'Save',
+    'edit_info_success' => 'Edit information successfully',
+    'my_schedule' => 'My Schedule',
+    'date' => 'Date',
 ];

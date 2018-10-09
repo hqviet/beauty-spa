@@ -17,7 +17,7 @@ Route::group(
         'as'         => 'front.'
     ],function () {
         Route::get('/', 'HomeController@index')->name('index');
-       
+
         /**
          * Cart
          */
@@ -56,7 +56,14 @@ Route::group(
         Route::get('logout', 'UserController@logout')->name('logout');
 
         Route::post('set-schedule', 'UserController@setSchedule')->name('set-schedule');
-        
+
+        Route::group(['middleware' => 'user'], function() {
+
+            Route::get('user', 'UserController@getInfoUser')->name('info-user');
+
+            Route::post('user', 'UserController@postInfoUser')->name('info-user');
+        });
+
     });
 
 Route::group(
@@ -116,13 +123,13 @@ Route::group(
             Route::post('/product/edit', 'ProductController@editProduct')->name('product.edit.handle');
 
             Route::get('/user/list', 'UserController@showList')->name('user.list');
-            
+
             Route::get('/user/add', 'UserController@showAddForm')->name('user.add.show');
-            
+
             Route::post('/user/add', 'UserController@addUser')->name('user.add.handle');
-            
+
             Route::get('/user/edit/{id}', 'UserController@showEditForm')->name('user.edit.show');
-            
+
             Route::post('/user/edit', 'UserController@editUser')->name('user.edit.handle');
 
         });

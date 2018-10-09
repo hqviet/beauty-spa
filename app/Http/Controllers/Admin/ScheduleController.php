@@ -49,7 +49,7 @@ class ScheduleController extends Controller
             DB::beginTransaction();
             try {
                 $schedule = Schedule::create($data);
-//                Mail::to($request->email)->send(new SetSchedule($schedule, $service));
+                Mail::to($request->email)->send(new SetSchedule($schedule, $service));
             } catch (\Exception $e) {
                 DB::rollBack();
                 return back()
@@ -100,7 +100,7 @@ class ScheduleController extends Controller
             DB::beginTransaction();
             try {
                 $schedule->update($data);
-//                Mail::to($request->email)->send(new SetSchedule($schedule, $service));
+                Mail::to($request->email)->send(new SetSchedule($schedule, $service));
             } catch (\Exception $e) {
                 DB::rollBack();
                 return back()

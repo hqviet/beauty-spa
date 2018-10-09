@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'sentinel.login' => \App\Http\Middleware\SentinelLogin::class,
         'inRole'    => \App\Http\Middleware\SentinelInRole::class,
         'hasAccess'  => \App\Http\Middleware\SentinelHasAccess::class,
+        'user' => \App\Http\Middleware\UserMiddleware::class,
     ];
 }

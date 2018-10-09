@@ -88,7 +88,7 @@
                                         <div class="col-sm-6">
                                             <input type="text" placeholder="{{ __('front.phone') }}"
                                                    name="phone" value="{{ old('phone') }}" required
-                                                   class=" {{$errors->has('first_name')? 'has-error' : ''}}">
+                                                   class=" {{$errors->has('phone')? 'has-error' : ''}}">
                                         </div>
                                     </div>
                                     <input type="email"  placeholder="{{ __('front.email_address') }}" required

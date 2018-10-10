@@ -51,6 +51,7 @@
                                     </table>
                                     <div class="plus-minus-pro-action mt-20">
                                         <div class="sin-pro-action f-right">
+                                            <a class="button button-black small mb-20" id="" href="{{ route('front.cart.removeAll') }}"><span class="text-uppercase">Remove All Items</span></a>
                                             <a class="button small mb-20" id="submit_cart" href="{{ route('front.cart.checkout') }}"><span class="text-uppercase">Checkout</span></a>
                                         </div>
                                     </div>

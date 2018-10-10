@@ -36,6 +36,12 @@ class User extends EloquentUser
         'password',
     ];
 
-    
-
+    public static function getUserWithAll($id)
+    {
+        return self::where('users.id', '=', $id)
+        ->join('role_users', 'role_users.user_id', '=', 'users.id')
+        ->join('roles', 'roles.id', '=', 'role_users.role_id')
+        ->select('users.id', 'users.first_name', 'users.last_name', 'users.email', 'users.address', 'users.phone', 'roles.slug as r_slug')
+        ->first();
+    }
 }

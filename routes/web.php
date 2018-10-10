@@ -23,12 +23,12 @@ Route::group(
          */
         Route::get('/cart', 'CartController@index')->name('cart.index');
         Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
+        Route::post('/checkout', 'CartController@checkoutHandler')->name('cart.checkout.handle');
         // Cart - ajax
         Route::post('/add', 'CartController@addToCart')->name('cart.add');
         Route::post('/remove', 'CartController@removeItem')->name('cart.remove');
         Route::post('/update', 'CartController@updateItem')->name('cart.update');
-        Route::post('/remove-all', 'CartController@removeAllItems')->name('cart.remove_all');
-
+        Route::get('/remove-all', 'CartController@removeAllItems')->name('cart.removeAll');
         /**
          * Product
          */
@@ -124,6 +124,14 @@ Route::group(
             Route::get('/user/edit/{id}', 'UserController@showEditForm')->name('user.edit.show');
             
             Route::post('/user/edit', 'UserController@editUser')->name('user.edit.handle');
+
+            Route::get('/order/list', 'OrderController@showList')->name('order.list');
+
+            // Route::get('order/edit/{id}', 'OrderController@showEditForm')->name('order.edit.show');
+            
+            Route::post('order/delete', 'OrderController@deleteOrder')->name('order.delete.handle');
+
+            Route::post('order/check', 'OrderController@checkOrder')->name('order.check.handle');
 
         });
     });

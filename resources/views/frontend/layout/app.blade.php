@@ -58,7 +58,6 @@
     <script src="{{ asset('assets/front/js/main.js') }}"></script>
     <script src="{{ asset('assets/front/js/notify/bootstrap-notify.js') }}"></script>
     <script>
-        
         $('.quick-view').click(function (e) {
             e.preventDefault();
             var product = $(this).data('product');
@@ -67,13 +66,13 @@
             }
             $('#product-name').text(product.name);
             $('#product-price').text('$ ' + product.price);
-            $('#product-img').attr('src', product.image);
+            $('#product-img').attr('src', 'uploads/products/' +  product.image);
             $('#add-to-cart').attr('data-id', product.id);
             $('#product-description').text(product.description);
-            $('#productModal').modal('toggle');            
-        });   
+            $('#productModal').modal('toggle');
+        });
 
-        $('.add-to-cart').click(function(e) {
+        $('.add-to-cart').click(function (e) {
             e.preventDefault();
             $.ajax({
                 url: '{{ route('front.cart.add') }}',
@@ -82,18 +81,59 @@
                     _token: '{{ Session::token() }}',
                     product_id: $(this).data('id')
                 },
-                success: function(data) {
+                success: function (data) {
                     console.log(data);
                     $('.cart-quantity').empty().text(data.totalItems);
-                    // notify('bottom', 'center', '&gt;', "" + data.status, 'animated fadeInDown', 'animated fadeOutUp', "" + data.message);
+                    $.notify({
+                        // options
+                        icon: '',
+                        title: 'Bootstrap notify',
+                        message: 'Turning standard Bootstrap alerts into "notify" like notifications',
+                        url: '',
+                        target: '_blank'
+                    }, {
+                        // settings
+                        element: 'body',
+                        position: null,
+                        type: data.status,
+                        allow_dismiss: true,
+                        newest_on_top: false,
+                        showProgressbar: false,
+                        placement: {
+                            from: "top",
+                            align: "center"
+                        },
+                        offset: 20,
+                        spacing: 10,
+                        z_index: 99999,
+                        delay: 3000,
+                        timer: 1000,
+                        url_target: '_blank',
+                        mouse_over: null,
+                        animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                        },
+                        onShow: null,
+                        onShown: null,
+                        onClose: null,
+                        onClosed: null,
+                        icon_type: 'class',
+                        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                            '<button id="btn_close_growl" type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                            '<span data-notify="icon"></span> ' +
+                            '<span data-notify="message">' + data.message + '</span>' +
+                        '</div>' +
+                        '</div>'
+                    });
                 },
-                error: function() {
+                error: function () {
                     alert('fail');
                 }
             });
             $('#productModal').modal('hide');
         });
-        
+
     </script>
     @yield('scripts')
 

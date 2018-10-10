@@ -22,6 +22,7 @@ class ProductTableSeeder extends Seeder
                 'category_id' => random_int(1, 3),
                 'price' => random_int(10, 1000),
                 'quantity' => random_int(0, 50),
+                'image' => '1.jpg'
             ]);
             DB::table('product_trans')->insert([
                 'product_id' => $id,

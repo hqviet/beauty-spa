@@ -80,6 +80,19 @@ $menus = [
                 'child' => null
             ]
         ]
+    ],
+    [
+        'title' => 'Order',
+        'slug' => 'order',
+        'icon' => '	fa fa-files-o',
+        'url' => '#',
+        'child' => [
+            [
+                'title' => 'List Order',
+                'url' => route('admin.order.list'),
+                'child' => null
+            ]
+        ]
     ]
 ];
 $active = isset($active) ? $active : '';

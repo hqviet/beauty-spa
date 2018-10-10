@@ -27,6 +27,12 @@
             <h5><i class="icon fa fa-check"></i>{{ Session::get('add_user')['message'] }} </h5>
         </div>
         @endif
+        @if (Session::has('update_user'))
+        <div class="alert alert-{{ Session::get('update_user')['status'] }} alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fa fa-check"></i>{{ Session::get('update_user')['message'] }} </h5>
+        </div>
+        @endif
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Quick Example</h3>
@@ -80,7 +86,7 @@
                             </div>
                             <div class="form-group col-md-6 col-sm-12 {{ $errors->has('address') ? 'has-error' : '' }}">
                                 <label for="address">Address</label>
-                                <input type="text" name="address" class="form-control" id="lastname" placeholder="Address"
+                                <input type="text" name="address" class="form-control" id="address" placeholder="Address"
                                     value="{{ $id ? $user->address : old('address') }}">
                                 @if ($errors->has('address'))
                                 <small class="text-danger">{{
@@ -89,11 +95,10 @@
                             </div>
                             <div class="form-group col-md-6 col-sm-12 {{ $errors->has('phone') ? 'has-error' : '' }}">
                                 <label for="phone">Phone</label>
-                                <input type="number" name="phone" class="form-control" id="lastname" placeholder="Phone number"
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone number"
                                     value="{{ $id ? $user->phone : old('phone') }}">
                                 @if ($errors->has('phone'))
-                                <small class="text-danger">{{
-                                    $errors->first('phone') }}</small>
+                                <small class="text-danger">{{ $errors->first('phone') }}</small>
                                 @endif
                             </div>
                             @if ($isAdmin)
@@ -101,7 +106,7 @@
                                 <label>Role</label>
                                 <select class="form-control" name="role">
                                     @foreach ($roles as $role)
-                                    <option value="{{ $role->slug }}" @if ($role->slug == $user->role) selected
+                                    <option value="{{ $role->slug }}" @if ($id && $role->slug == $user->r_slug) selected
                                         @endif>{{ $role->name }}</option>
                                     @endforeach
                                 </select>

@@ -1,8 +1,6 @@
 <?php
 return [
-    'Created successfully!' => 'Tạo mới thành công!',
-    'Updated successfully!' => 'Cập nhật thành công!',
-    'Deleted fail!' => 'Xóa bị lỗi!',
-    'Deleted successfully!' => 'Xóa thành công!',
-    'delete_success' => 'Xóa thành công!',
+    'checkout_success' => 'Your order has been received!!',
+    'checkout_error' => 'Fail to checkout!! Please try again later'
+
 ];

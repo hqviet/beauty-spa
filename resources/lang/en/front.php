@@ -46,4 +46,5 @@ return[
     'block' => 'Your account is blocked within :delay seconds.',
     'register_success' => 'Sign Up Success',
     'schedule_success' => 'Set the schedule successfully',
+    'order_success' => 'Your order has been received'
 ];

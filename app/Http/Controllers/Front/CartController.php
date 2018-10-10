@@ -5,10 +5,15 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cart;
+use DB;
+use Sentinel;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\CheckoutRequest;
 
 class CartController extends Controller
 {
@@ -99,9 +104,58 @@ class CartController extends Controller
 
     public function removeAllItems(Request $request)
     {
-
+        Cart::destroy();
+        return redirect()->back();
     }
 
+    public function checkout(Request $request)
+    {
+        $listItem = Cart::content();
+        $options = [
+            'list' => $listItem
+        ];
+        $user = Sentinel::getUser();
+        $options['user'] = $user ? $user : null;
+        return view('frontend.checkout', $options);
+    }
 
+    public function checkoutHandler(CheckoutRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+            $data = [
+                'name' => $request->get('orderName'),
+                'email' => $request->get('orderEmail'),
+                'phone' => $request->get('orderPhone'),
+                'address' => $request->get('orderAddress'),
+                'note' => $request->get('orderNote', ''),
+                'payment' => $request->get('orderPaymentMethod'),
+                'total' => Cart::subtotal(),
+                'status' => 0
+            ];
+            $order = Order::create($data);
+            $cartItems = Cart::content();
+            foreach ($cartItems as $item) {
+               OrderDetail::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->id,
+                    'price' => $item->price,
+                    'quantity' => $item->qty
+                ]);
+            }
 
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withInput()->with('checkout', [
+                'status' => 'danger',
+                'message' => trans('message.checkout_error')
+            ]);
+        }
+        DB::commit();
+        Cart::destroy();
+        return redirect()->route('front.index')->with('checkout', [
+            'status' => 'success',
+            'message' => trans('message.checkout_success')
+        ]);
+    }
 }

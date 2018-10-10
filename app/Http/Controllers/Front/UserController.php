@@ -75,7 +75,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        return redirect()->route('front.index')->with('success', trans('front.register_success'));
+        return redirect()->route('front.index')->with('signup_success', trans('front.register_success'));
     }
 
     public function logout(Request $request)

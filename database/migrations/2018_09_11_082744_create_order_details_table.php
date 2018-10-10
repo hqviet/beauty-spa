@@ -18,9 +18,11 @@ class CreateOrderDetailsTable extends Migration
             $table->unsignedInteger('order_id')->nullable();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->unsignedInteger('product_id')->nullable();
-            $table->float('price');
+            $table->string('price');
             $table->integer('quantity');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

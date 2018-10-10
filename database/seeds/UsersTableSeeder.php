@@ -19,6 +19,10 @@ class UsersTableSeeder extends Seeder
         $role1 = [
             'name' => 'Admin',
             'slug' => 'admin',
+            'permissions' => [
+                'administrator' => true,
+                'directorate' => true,
+            ]
         ];
         $adminRole = Sentinel::getRoleRepository()->createModel()->fill($role1)->save();
 
@@ -26,6 +30,10 @@ class UsersTableSeeder extends Seeder
         $role2 = [
             'name' => 'Employee',
             'slug' => 'employee',
+            'permissions' => [
+                'administrator' => true,
+                'directorate' => false,
+            ]
         ];
         $employeeRole = Sentinel::getRoleRepository()->createModel()->fill($role2)->save();
 
@@ -33,6 +41,10 @@ class UsersTableSeeder extends Seeder
         $role3 = [
             'name' => 'User',
             'slug' => 'user',
+            'permissions' => [
+                'administrator' => false,
+                'directorate' => false,
+            ]
         ];
         $userRole = Sentinel::getRoleRepository()->createModel()->fill($role3)->save();
 
@@ -43,6 +55,8 @@ class UsersTableSeeder extends Seeder
             'last_name' => 'admin',
             'email'    => 'admin@gmail.com',
             'password' => 'admin@123',
+            'address' => 'ha noi',
+            'phone' => '0946305096',
             'permissions' => [
                 'administrator' => true,
                 'directorate' => true,

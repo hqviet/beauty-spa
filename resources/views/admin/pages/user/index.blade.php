@@ -21,16 +21,17 @@
 
     <!-- Main content -->
     <section class="content">
-        
+
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-md-12">
-                @if (Session::has('update_product')) 
-                <div class="alert alert-{{ Session::get('update_product')['status'] }} alert-dismissible">
+                @if (Session::has('update_user'))
+                <div class="alert alert-{{ Session::get('update_user')['status'] }} alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <i class="icon fa fa-check"></i>{{ Session::get('update_product')['message'] }}</div>
+                    <i class="icon fa fa-check"></i>{{ Session::get('update_user')['message'] }}
+                </div>
                 @endif
-                @if (Session::has('delete_product'))
+                @if (Session::has('delete_user'))
                 <div class="alert alert-{{ Session::get('delete_product')['status'] == 'success' ? 'success' : 'danger' }} alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <i class="icon fa fa-check"></i>
@@ -51,30 +52,37 @@
                                         aria-describedby="example2_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Email</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Address</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Phone</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                                    colspan="1">ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                    colspan="1">Email</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                    colspan="1">Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                    colspan="1">Address</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                    colspan="1">Phone</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        
-                                                @forelse ($users as $user)
-                                                <tr class="text-center">
-                                                    <td>{{ $user->id }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
-                                                    <td>{{ $user->address }}</td>
-                                                    <td>{{ $user->phone }}</td>
-                                                    <td>
-                                                        <a href="{{ route('admin.user.edit.show', ['id' => $user->id]) }}" class="btn btn-info">Edit</a>
-                                                        <a href="#" class="btn btn-danger delete_btn" data-name="{{ $user->first_name . ' ' . $user->last_name }}" data-id="{{ $user->id }}" data-toggle="modal" data-target="#delete_dialog">Delete</a>
-                                                    </td>
-                                                </tr>
-                                                @empty
-                                                @endforelse
+
+                                            @forelse ($users as $user)
+                                            <tr class="text-center">
+                                                <td>{{ $user->id }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
+                                                <td>{{ $user->address }}</td>
+                                                <td>{{ $user->phone }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.user.edit.show', ['id' => $user->id]) }}"
+                                                        class="btn btn-info">Edit</a>
+                                                    <a href="#" class="btn btn-danger delete_btn" data-name="{{ $user->first_name . ' ' . $user->last_name }}"
+                                                        data-id="{{ $user->id }}" data-toggle="modal" data-target="#delete_dialog">Delete</a>
+                                                </td>
+                                            </tr>
+                                            @empty
+                                            @endforelse
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -132,7 +140,7 @@
         $('#user_name').text($(this).data('name'));
         $('#delete_id').val($(this).data('id'));
     });
-    
+
     $(function () {
         $('#user_table').DataTable({
             'paging': true,
@@ -143,6 +151,7 @@
             'autoWidth': true
         });
     });
+
 </script>
 
 @endsection

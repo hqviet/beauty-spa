@@ -30,7 +30,7 @@ class Product extends Model
         return $this->hasMany('App\Models\ProductTran', 'product_id');
     }
 
-    public function translation($lang) 
+    public function translation($lang = null) 
     {
         if ($lang == null) {
             $lang = app()->getLocale();
@@ -46,6 +46,28 @@ class Product extends Model
         $listProduct = self::join('product_trans', 'product_trans.product_id', '=', 'products.id')
         ->select('products.id', 'products.slug', 'products.price', 'products.quantity', 'products.category_id', 'products.brand_id', 'products.image', 'product_trans.name', 'product_trans.description')
         ->where('product_trans.lang', '=', $lang)->get();
+        return $listProduct;
+    }
+
+    public static function listProductInBrand($lang = null, $brand)
+    {
+        if ($lang == null) {
+            $lang = app()->getLocale();
+        }
+        $listProduct = self::join('product_trans', 'product_trans.product_id', '=', 'products.id')
+        ->select('products.id', 'products.slug', 'products.price', 'products.quantity', 'products.category_id', 'products.brand_id', 'products.image', 'product_trans.name', 'product_trans.description')
+        ->where('product_trans.lang', '=', $lang)->where('products.brand_id', '=', $brand);
+        return $listProduct;
+    }
+
+    public static function listProductInCategory($category, $lang = null)
+    {
+        if ($lang == null) {
+            $lang = app()->getLocale();
+        }
+        $listProduct = self::join('product_trans', 'product_trans.product_id', '=', 'products.id')
+        ->select('products.id', 'products.slug', 'products.price', 'products.quantity', 'products.category_id', 'products.brand_id', 'products.image', 'product_trans.name', 'product_trans.description')
+        ->where('product_trans.lang', '=', $lang)->where('products.category_id', '=', $category);
         return $listProduct;
     }
 

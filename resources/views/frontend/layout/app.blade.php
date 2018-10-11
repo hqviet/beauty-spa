@@ -66,7 +66,7 @@
             }
             $('#product-name').text(product.name);
             $('#product-price').text('$ ' + product.price);
-            $('#product-img').attr('src', 'uploads/products/' +  product.image);
+            $('#product-img').attr('src', "{{ asset('uploads/products') }}" + "/" + product.image);
             $('#add-to-cart').attr('data-id', product.id);
             $('#product-description').text(product.description);
             $('#productModal').modal('toggle');

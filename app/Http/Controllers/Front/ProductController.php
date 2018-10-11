@@ -41,9 +41,12 @@ class ProductController extends Controller
     {
         $category = $this->category->select('id', 'name')->where('slug', '=', $slug)->first();
         if (!$category) {
-            return view('frontend.404');
+            abort(404);
         }
-        $products = $this->product->where('category_id', '=', $category->id)->paginate(5);
+        // $lang = $request->session()->get('language');
+
+        $products = Product::listProductInCategory($category->id)->paginate(5);
+        
         $options = [
             'category_result' => $category->name,
             'products' => $products
@@ -55,9 +58,11 @@ class ProductController extends Controller
     {
         $brand = $this->brand->select('id', 'name')->where('slug', '=', $slug)->first();
         if (!$brand) {
-            return view('frontend.404');
+            abort(404);
         }
-        $products = $this->product->where('brand_id', '=', $brand->id)->paginate(5);
+        $lang = $request->session()->get('language');
+
+        $products = Product::listProductInBrand($lang, $brand->id)->paginate(5);
         $options = [
             'brand_result' => $brand->name,
             'products' => $products

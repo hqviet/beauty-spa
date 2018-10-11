@@ -51,7 +51,7 @@
                                         <select name="brand" class="form-control">
                                             <option value="{{ old('brand') }}">-- Choose a brand --</option>
                                             @forelse ($brands as $brand)
-                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            <option value="{{ $brand->id }}" @if ($id) @if ($product->brand->name == $brand->name) selected @endif @endif>{{ $brand->name }}</option>
                                             @empty
                                             @endforelse
                                         </select>

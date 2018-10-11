@@ -123,6 +123,6 @@ class UserController extends Controller
 
         $user = Sentinel::update($user, $data);
 
-        return redirect()->back()->with('success', trans('front.schedule_success'));
+        return redirect()->back()->with('success', trans('front.edit_info_success'));
     }
 }

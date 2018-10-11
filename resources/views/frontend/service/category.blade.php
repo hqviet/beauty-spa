@@ -54,7 +54,7 @@
                     <div class="col-lg-12 alert alert-danger ">{{ __('front.service-not-found') }}</div>
                 @endforelse
             </div>
-            <div class="text-center">{{ $services->links() }}</div>
+            <div class="text-center">{{ $services->links('frontend.vendor.pagination') }}</div>
 
         </div>
     </div>

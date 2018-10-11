@@ -108,8 +108,7 @@
                                             <div class="product-info">
                                                 <div class="clearfix">
                                                     <h6 class="product-title f-left">
-                                                        <a href="{{ route('front.product.detail', ['slug' => $product->slug]) }}">{{
-                                                            $product->name }}</a>
+                                                        <a href="{{ route('front.product.detail', ['slug' => $product->slug]) }}">{{ $product->translation()->first()->name }}</a>
                                                     </h6>
                                                     <div class="pro-rating f-right">
                                                         <a href="#"><i class="zmdi zmdi-star"></i></a>

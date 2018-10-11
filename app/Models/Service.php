@@ -27,7 +27,7 @@ class Service extends Model
 
     public function serviceTranslation()
     {
-        return $this->hasMany(ServiceTranslation::class, 'services_id', 'id');
+        return $this->hasMany(ServiceTranslation::class, 'services_id', 'id')->withTrashed();
     }
 
     public function translation($language = null)

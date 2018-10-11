@@ -20,6 +20,6 @@ class Schedule extends Model
 
     public function service()
     {
-        return $this->belongsTo(Service::class, 'services_id', 'id');
+        return $this->belongsTo(Service::class, 'services_id', 'id')->withTrashed();
     }
 }

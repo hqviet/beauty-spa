@@ -7,9 +7,9 @@
                     <div class="col-sm-6 hidden-xs">
                         <div class="call-us">
                             <p class="mb-0 roboto">
-                               
+
                             </p>
-    
+
                         </div>
                     </div>
                     <div class="col-sm-6 col-xs-12">
@@ -17,7 +17,7 @@
                             <ul class="link f-right">
                                 @if ($user = Sentinel::getUser())
                                 <li>
-                                    <a href="my-account.html">
+                                    <a href="{{ route('front.info-user') }}">
                                         <i class="zmdi zmdi-account"></i>
                                         {{$user->first_name}}
                                     </a>
@@ -91,7 +91,7 @@
                                                         <a href="{{ route('front.product.list.category', $category->slug) }}">{{ $category->name }}</a>
                                                     </li>
                                                     @empty
-                                                        
+
                                                     @endforelse
                                                 </ul>
                                                 <ul class="single-mega-item">
@@ -180,4 +180,3 @@
         </div>
     </header>
     <!-- END HEADER AREA -->
-    

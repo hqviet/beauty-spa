@@ -46,6 +46,11 @@ return[
     'block' => 'Tài khoản của bạn đã bị khóa trong :delay giây',
     'register_success' => 'Đăng ký thành công',
     'schedule_success' => 'Đặt lịch thành công',
+    'information' => 'Thông tin tài khoản',
+    'save' => 'Lưu',
+    'edit_info_success' => 'Thay đổi thông tin thành công ',
+    'my_schedule' => 'Lịch trình của tôi',
+    'date' => 'Ngày',
     'order_success' => 'Đơn hàng của bạn đã được nhận'
 
 ];

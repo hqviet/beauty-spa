@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Http\Requests\Front\EditInfoRequest;
 use App\Http\Requests\Front\LoginRequest;
 use App\Http\Requests\Front\RegisterRequest;
 use App\Http\Requests\Front\SetScheduleRequest;
@@ -101,6 +102,27 @@ class UserController extends Controller
             }
             DB::commit();
         }
+        return redirect()->back()->with('success', trans('front.schedule_success'));
+    }
+
+    public function getInfoUser()
+    {
+        $user = Sentinel::getUser();
+        $schedules = Schedule::where('email','=',$user->email)->get();
+        return view('frontend.users.profile', compact('user', 'schedules'));
+    }
+
+    public function postInfoUser(EditInfoRequest $request)
+    {
+        $user = Sentinel::getUser();
+        $request->request->remove('email');
+        if (!$request->password) {
+            $request->request->remove('password');
+        }
+        $data = $request->all();
+
+        $user = Sentinel::update($user, $data);
+
         return redirect()->back()->with('success', trans('front.schedule_success'));
     }
 }

@@ -13,3 +13,4 @@ yarn-error.log
 composer.lock
 .editor-config
 .phpunit.result.cache
+.env

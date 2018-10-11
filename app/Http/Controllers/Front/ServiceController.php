@@ -18,7 +18,7 @@ class ServiceController extends Controller
         if(!$cate){
             abort(404);
         }
-        $services = Service::listsByCate($cate->id)->paginate(1);
+        $services = Service::listsByCate($cate->id)->paginate(3);
         $cateTranslation = CategoryServiceTranslation::where('category_services_id', $cate->id)->where('lang', app()->getLocale())->first();
         return view('frontend.service.category', compact('services', 'cateTranslation'));
     }

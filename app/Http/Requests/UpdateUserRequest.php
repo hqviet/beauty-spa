@@ -28,7 +28,9 @@ class UpdateUserRequest extends FormRequest
             'firstname' => 'required',
             'lastname' => 'required',
             'phone' => 'required|regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/',
-            'address' => 'required'
+            'address' => 'required',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
         ];
     }
 }

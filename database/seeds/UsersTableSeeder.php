@@ -56,6 +56,7 @@ class UsersTableSeeder extends Seeder
             'email'    => 'admin@gmail.com',
             'password' => 'admin@123',
             'address' => 'ha noi',
+            'avatar' => '1.jpg',
             'phone' => '0946305096',
             'permissions' => [
                 'administrator' => true,

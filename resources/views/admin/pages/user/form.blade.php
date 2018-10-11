@@ -39,7 +39,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="post" action="{{ $action == 'create' ? route('admin.user.add.handle') : route('admin.user.edit.handle') }}">
+            <form role="form" method="post" action="{{ $action == 'create' ? route('admin.user.add.handle') : route('admin.user.edit.handle') }}" enctype="multipart/form-data">
                 @csrf
                 @if ($id)
                 <input type="hidden" name="id" value="{{ $id }}">
@@ -47,7 +47,7 @@
                 <div class="box-body">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="form-group col-md-6 col-sm-12 {{ $errors->has('email') ? 'has-error' : '' }}">
+                            <div class="form-group col-sm-12 {{ $errors->has('email') ? 'has-error' : '' }}">
                                 <label for="email">Email address</label>
                                 <input type="email" name="email" class="form-control" id="email" placeholder="Enter email"
                                     value="{{ $id ? $user->email : old('email') }}" {{ $id ? 'readonly' : '' }}>
@@ -57,7 +57,7 @@
                                 @endif
                             </div>
                             @if ($action == 'create')
-                            <div class="form-group col-md-6 col-sm-12 {{ $errors->has('password') ? 'has-error' : '' }}">
+                            <div class="form-group col-sm-12 {{ $errors->has('password') ? 'has-error' : '' }}">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
                                 @if ($errors->has('password'))
@@ -66,7 +66,7 @@
                                 @endif
                             </div>
                             @endif
-                            <div class="form-group col-md-6 col-sm-12 {{ $errors->has('firstname') ? 'has-error' : '' }}">
+                            <div class="form-group col-sm-12 {{ $errors->has('firstname') ? 'has-error' : '' }}">
                                 <label for="firstname">First name</label>
                                 <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First name"
                                     value="{{ $id ? $user->first_name : old('firstname') }}">
@@ -75,7 +75,7 @@
                                     $errors->first('firstname') }}</small>
                                 @endif
                             </div>
-                            <div class="form-group col-md-6 col-sm-12 {{ $errors->has('lastname') ? 'has-error' : '' }}">
+                            <div class="form-group col-sm-12 {{ $errors->has('lastname') ? 'has-error' : '' }}">
                                 <label for="lastname">Last name</label>
                                 <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Last name"
                                     value="{{ $id ? $user->last_name : old('lastname') }}">
@@ -84,7 +84,7 @@
                                     $errors->first('lastname') }}</small>
                                 @endif
                             </div>
-                            <div class="form-group col-md-6 col-sm-12 {{ $errors->has('address') ? 'has-error' : '' }}">
+                            <div class="form-group col-sm-12 {{ $errors->has('address') ? 'has-error' : '' }}">
                                 <label for="address">Address</label>
                                 <input type="text" name="address" class="form-control" id="address" placeholder="Address"
                                     value="{{ $id ? $user->address : old('address') }}">
@@ -93,7 +93,7 @@
                                     $errors->first('address') }}</small>
                                 @endif
                             </div>
-                            <div class="form-group col-md-6 col-sm-12 {{ $errors->has('phone') ? 'has-error' : '' }}">
+                            <div class="form-group col-sm-12 {{ $errors->has('phone') ? 'has-error' : '' }}">
                                 <label for="phone">Phone</label>
                                 <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone number"
                                     value="{{ $id ? $user->phone : old('phone') }}">
@@ -101,12 +101,22 @@
                                 <small class="text-danger">{{ $errors->first('phone') }}</small>
                                 @endif
                             </div>
+                            <div class="form-group col-sm-12 {{ $errors->has('avatar') ? 'has-error' : '' }}">
+                                <label for="avatar">Avatar</label>
+                                <input type="file" name="avatar" class="form-control" id="phone" placeholder="Avatar">
+                                @if ($errors->has('avatar'))
+                                <small class="text-danger">{{ $errors->first('avatar') }}</small>
+                                @endif
+                                @if ($id)
+                                <img width="200px" src=" {{ asset('uploads/users/' . $user->avatar ) }}" alt="">
+                                @endif
+                            </div>
                             @if ($isAdmin)
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-sm-12">
                                 <label>Role</label>
                                 <select class="form-control" name="role">
                                     @foreach ($roles as $role)
-                                    <option value="{{ $role->slug }}" @if ($id && $role->slug == $user->r_slug) selected
+                                    <option value="{{ $role->id }}" @if ($id && $role->slug == $user->r_slug) selected
                                         @endif>{{ $role->name }}</option>
                                     @endforeach
                                 </select>
@@ -118,7 +128,12 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-success">{{ !$id ? 'Create new user' : 'Update user' }}</button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-success">{{ !$id ? 'Create new user' : 'Update user' }}</button>
+
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

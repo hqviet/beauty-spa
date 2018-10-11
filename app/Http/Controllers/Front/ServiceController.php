@@ -7,6 +7,8 @@ use App\Models\CategoryServiceTranslation;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Sentinel;
+use App\Models\User;
 
 class ServiceController extends Controller
 {
@@ -30,6 +32,8 @@ class ServiceController extends Controller
     public function serviceDetail($slug)
     {
         $service = Service::where('slug', $slug)->first();
+        $role = Sentinel::findRoleBySlug('employee');
+        $employees = $role->users()->with('roles')->get();
         if(!$service){
             abort(404);
         }
@@ -38,6 +42,6 @@ class ServiceController extends Controller
             abort(404);
         }
 
-        return view('frontend.service.detail_service', compact('service_t'));
+        return view('frontend.service.detail_service', compact('service_t', 'employees'));
     }
 }

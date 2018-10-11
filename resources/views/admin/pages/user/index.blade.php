@@ -54,6 +54,8 @@
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
                                                     colspan="1">ID</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                                    colspan="1">Avatar</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                     colspan="1">Email</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
@@ -70,6 +72,7 @@
                                             @forelse ($users as $user)
                                             <tr class="text-center">
                                                 <td>{{ $user->id }}</td>
+                                                <td><img width="50px" src="{{ asset('uploads/users/' . $user->avatar) }}" alt=""></td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
                                                 <td>{{ $user->address }}</td>
@@ -84,16 +87,17 @@
                                             @empty
                                             @endforelse
                                         </tbody>
-                                        <tfoot>
+                                        {{-- <tfoot>
                                             <tr>
                                                 <th rowspan="1" colspan="1">ID</th>
+                                                <th rowspan="1" colspan="1">Avatar</th>
                                                 <th rowspan="1" colspan="1">Email</th>
                                                 <th rowspan="1" colspan="1">Name</th>
                                                 <th rowspan="1" colspan="1">Address</th>
                                                 <th rowspan="1" colspan="1">Phone</th>
                                                 <th rowspan="1" colspan="1">Action</th>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> --}}
                                     </table>
                                 </div>
                             </div>

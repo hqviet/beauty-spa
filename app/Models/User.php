@@ -23,6 +23,7 @@ class User extends EloquentUser
         'address',
         'phone',
         'permissions',
+        'avatar',
         'first_name',
         'last_name'
     ];
@@ -41,7 +42,8 @@ class User extends EloquentUser
         return self::where('users.id', '=', $id)
         ->join('role_users', 'role_users.user_id', '=', 'users.id')
         ->join('roles', 'roles.id', '=', 'role_users.role_id')
-        ->select('users.id', 'users.first_name', 'users.last_name', 'users.email', 'users.address', 'users.phone', 'roles.slug as r_slug')
+        ->select('users.id', 'users.first_name', 'users.last_name', 'users.avatar', 'users.email', 'users.address', 'users.phone', 'roles.slug as r_slug')
         ->first();
     }
+
 }

@@ -29,7 +29,8 @@ class AddUserRequest extends FormRequest
             'firstname' => 'required',
             'lastname' => 'required',
             'address' => 'required',
-            'phone' => 'required'
+            'phone' => 'required',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

@@ -74,8 +74,6 @@ class ProductController extends Controller
             } else {
                 return back()->withInput();
             }
-            // dd($this->product->save($data));
-
             $this->product->create($data);
             $id = $this->product->select('id')->where('slug', '=', $data['slug'])->first()->id;
             $langs = config('app.locales');

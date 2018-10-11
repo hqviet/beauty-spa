@@ -72,16 +72,15 @@
                 <div class="row">
                     <div class="active-team-member">
                         <!-- team-member start -->
-                        @for($i = 0; $i<10 ;$i++)
+                        @forelse ($employees as $e)
                         <div class="col-md-12">
                             <div class="team-member box-shadow bg-shape">
                                 <div class="team-member-photo">
-                                    <img src="{{ asset('assets/front/img/team/1.png') }}" alt="">
+                                    <img width="100%" height="" src="{{ asset('uploads/users/' . $e->avatar) }}" alt="">
                                 </div>
                                 <div class="team-member-info pt-20">
-                                    <h5 class="member-name"><a href="#">Nancy holland</a></h5>
-                                    <p class="member-position">Chairman</p>
-                                    <p class="mb-20">There are many variations of passage of Lorem Ipsum available, but the in majority have suffered.</p>
+                                    <h5 class="member-name"><a href="#">{{ $e->first_name . " " . $e->last_name }}</a></h5>
+                                    <p class="mb-20">{{ __('message.about') }}</p>
                                     <ul class="footer-social">
                                         <li>
                                             <a class="facebook" href="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
@@ -100,7 +99,8 @@
                             </div>
                         </div>
                         <!-- team-member end -->
-                        @endfor
+                        @empty
+                        @endforelse
                     </div>
                 </div>
             </div>

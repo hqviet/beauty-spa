@@ -51,7 +51,6 @@ class UserController extends Controller
 
     public function addUser(AddUserRequest $request)
     {
-        dd(User::select('id')->where('email', '=', 'admin@gmail.com')->first()->id);
         try {
             DB::beginTransaction();
             $data = [
@@ -66,9 +65,19 @@ class UserController extends Controller
                 'first_name' => $request->get('firstname'),
                 'last_name' => $request->get('lastname'),
             ];
+            if ($request->hasFile('avatar')) {
+                $image = $request->file('avatar');
+                $name = $data['email'] . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('/uploads/users');
+                $imagePath = $destinationPath . "/" . $name;
+                $image->move($destinationPath, $name);
+                $data['avatar'] = $name;
+            } else {
+                return back()->withInput();
+            }
             Sentinel::registerAndActivate($data);
             $lastInsertedId = User::where('email', '=', $data['email'])->first()->id;
-            DB::table('role_users')->save([
+            DB::table('role_users')->insert([
                 'user_id' => $lastInsertedId,
                 'role_id' => $request->get('role', 3)
             ]);
@@ -76,7 +85,7 @@ class UserController extends Controller
             DB::rollback();
             return redirect()->back()->withInput()->with('add_user', [
                 'status' => 'danger',
-                'message' => 'Fail to add user!!',
+                'message' => $e->getMessage(),
             ]);
         }
         DB::commit();
@@ -118,13 +127,23 @@ class UserController extends Controller
                 'address' => $request->get('address'),
                 'phone' => $request->get('phone'),
             ];
+            if ($request->hasFile('avatar')) {
+                $image = $request->file('avatar');
+                $name = $user->email . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('/uploads/users');
+                $imagePath = $destinationPath . "/" . $name;
+                $image->move($destinationPath, $name);
+                $data['avatar'] = $name;
+            }
             if ($role) {
-                $roleId = Sentinel::findRoleBySlug($role)->id;
+                $roleId = Sentinel::findRoleById($role)->id;
+
                 DB::table('role_users')->where('user_id', '=', $user->id)->update([
                     'role_id' => $roleId,
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                 ]);
             }
+
             $user->update($data);
         } catch (\Exception $e) {
             return back()->withInput()->with('update_user', [

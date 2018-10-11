@@ -132,7 +132,7 @@
                                                         <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" class="add-to-cart" data-id="{{ $product->id }}" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                                                        <a class="add-to-cart" href="javascript:void(0);" title="Add to cart" data-id="{{ $product->id }}"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                                     </li>
                                                 </ul>
                                             </div>

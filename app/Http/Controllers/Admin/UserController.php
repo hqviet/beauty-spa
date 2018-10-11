@@ -10,6 +10,7 @@ use DB;
 use Illuminate\Http\Request;
 use Sentinel;
 use Carbon\Carbon;
+use File;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
 
     public function showList(Request $request)
     {
-        $users = User::where('email', '!=', 'admin@gmail.com')->get();
+        $users = User::getAllUser();
         $options = [
             'users' => $users,
         ];
@@ -129,11 +130,15 @@ class UserController extends Controller
             ];
             if ($request->hasFile('avatar')) {
                 $image = $request->file('avatar');
-                $name = $user->email . '.' . $image->getClientOriginalExtension();
+                $name = time() . '.' . $image->getClientOriginalExtension();
                 $destinationPath = public_path('/uploads/users');
                 $imagePath = $destinationPath . "/" . $name;
                 $image->move($destinationPath, $name);
                 $data['avatar'] = $name;
+                $old_image_path = "/uploads/users/" . User::find($request->get('id'))->image;
+                    if (File::exists($old_image_path)) {
+                        File::delete($old_image_path);
+                    }
             }
             if ($role) {
                 $roleId = Sentinel::findRoleById($role)->id;

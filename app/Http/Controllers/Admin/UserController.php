@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         $user = Sentinel::getUser();
         $isAdmin = $user->permissions['administrator'];
-        $roles = DB::table('roles')->select('id', 'slug', 'name')->get();
+        $roles = Sentinel::getRoleRepository()->get();
 
         $options = [
             'isAdmin' => $isAdmin,
@@ -77,11 +77,11 @@ class UserController extends Controller
                 return back()->withInput();
             }
             Sentinel::registerAndActivate($data);
-            $lastInsertedId = User::where('email', '=', $data['email'])->first()->id;
-            DB::table('role_users')->insert([
-                'user_id' => $lastInsertedId,
-                'role_id' => $request->get('role', 3)
+            $user = Sentinel::findByCredentials([
+                'email' => $data['email']
             ]);
+            $role = Sentinel::findRoleById($request->get('role', 3));
+            $role->users()->attach($user);
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withInput()->with('add_user', [
@@ -110,7 +110,7 @@ class UserController extends Controller
             'userRole' => 1
         ];
         if ($isAdmin == true) {
-            $roles = DB::table('roles')->select('id', 'slug', 'name')->get();
+            $roles = Sentinel::getRoleRepository()->get();
             $options['roles'] = $roles;
         }
         return view($this->user_form, $options);
@@ -119,9 +119,10 @@ class UserController extends Controller
     public function editUser(UpdateUserRequest $request)
     {
         try {
-            // $user = Sentinel::findById($request->get('id'));
-            $user = User::findOrFail($request->get('id'));
-            $role = $request->get('role', '');
+            // dd($request->all());
+            DB::beginTransaction();
+            $user = Sentinel::findById($request->get('id'));
+            $roleId = $request->get('role');
             $data = [
                 'first_name' => $request->get('firstname'),
                 'last_name' => $request->get('lastname'),
@@ -136,26 +137,24 @@ class UserController extends Controller
                 $image->move($destinationPath, $name);
                 $data['avatar'] = $name;
                 $old_image_path = "/uploads/users/" . User::find($request->get('id'))->image;
-                    if (File::exists($old_image_path)) {
-                        File::delete($old_image_path);
-                    }
+                if (File::exists($old_image_path)) {
+                    File::delete($old_image_path);
+                }
             }
-            if ($role) {
-                $roleId = Sentinel::findRoleById($role)->id;
-
-                DB::table('role_users')->where('user_id', '=', $user->id)->update([
-                    'role_id' => $roleId,
-                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-                ]);
-            }
-
+            $oldRoleId = $user->getRoles()->first()->id;
+            $oldRole = Sentinel::findRoleById($oldRoleId);
+            $oldRole->users()->detach($user);
+            $role = Sentinel::findRoleById($roleId);
+            $role->users()->attach($user);
             $user->update($data);
         } catch (\Exception $e) {
+            DB::rollback();
             return back()->withInput()->with('update_user', [
                 'status' => 'danger',
                 'message' => $e->getMessage()
             ]);
         }
+        DB::commit();
         return redirect()->route('admin.user.list')->with('update_user', [
             'status' => 'success',
             'message' => 'User has been updated successfully!!',

@@ -94,30 +94,7 @@
 
                                                     @endforelse
                                                 </ul>
-                                                <ul class="single-mega-item">
-                                                    <li class="menu-title">Tablets</li>
-                                                    <li>
-                                                        <a href="">All Tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Smart tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Android Tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Windows Tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Refurbished Tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Tablets Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Cases & Covers</a>
-                                                    </li>
-                                                </ul>
+                                                
                                             </div>
                                             <div class="mega-menu-photo f-left">
                                                 <a href="#">
@@ -149,9 +126,9 @@
                                         <button class="search-toggle">
                                             <i class="zmdi zmdi-search"></i>
                                         </button>
-                                        <form action="#">
+                                        <form action="{{ route('front.search') }}" method="GET">
                                             <div class="top-search-box">
-                                                <input type="text" placeholder="Search here your product...">
+                                                <input type="text" name="keyword" placeholder="Search here your product...">
                                                 <button type="submit">
                                                     <i class="zmdi zmdi-search"></i>
                                                 </button>

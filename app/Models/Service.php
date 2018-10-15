@@ -76,5 +76,22 @@ class Service extends Model
 
     }
 
+    public static function listsByKeyword($keyword, $lang=null)
+    {
+        if ($lang == null) {
+            $lang = app()->getLocale();
+        }
+
+        return self::select('services.id', 'slug', 'category_service_id',
+            'image' ,'price', 'st.name AS s_name', 'short_description', 'description')
+            ->join('services_translations AS st', function($join) use ($lang, $keyword){
+                $join->on('services.id', '=', 'st.services_id')
+                    ->where('st.lang', '=', $lang)->where('st.name', 'like', '%'.$keyword.'%');;
+            });
+
+    }
+
+
+
 
 }

@@ -64,6 +64,8 @@ Route::group(
             Route::post('user', 'UserController@postInfoUser')->name('info-user');
         });
 
+        Route::get('search', 'HomeController@search')->name('search');
+
     });
 
 Route::group(

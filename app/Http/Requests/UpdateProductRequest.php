@@ -27,15 +27,15 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_vi' => 'required',
-            'name_en' => 'required',
+            'name_vi' => 'required|max:50|',
+            'name_en' => 'required|max:50|',
             'category' => 'required',
             'brand' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price' => 'required|regex:/^\d*\.?\d+$/',
             'quantity' => 'required|gt:0|integer',
-            'description_vi' => 'required',
-            'description_en' => 'required',
+            'description_vi' => 'required|max:300|',
+            'description_en' => 'required|max:300|',
         ];
     }
 }

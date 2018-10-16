@@ -24,11 +24,11 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users,email,' . $this->get('id'),
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'phone' => 'required|regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/',
-            'address' => 'required',
+            'email' => 'required|max:50|unique:users,email,' . $this->get('id'),
+            'firstname' => 'required|max:50|',
+            'lastname' => 'required|max:50|',
+            'phone' => 'required|max:20|regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/',
+            'address' => 'required|max:150|',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ];

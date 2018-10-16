@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\ServiceTranslation;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
@@ -27,6 +28,14 @@ class HomeController extends Controller
         ]);
 
 
+    }
+
+    public function search(Request $request)
+    {
+        $services = Service::listsByKeyword($request->get('keyword'))->paginate(6);        
+        return view('frontend.search', [
+            'services' => $services
+        ]);
     }
 
     

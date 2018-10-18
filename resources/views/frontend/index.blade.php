@@ -75,7 +75,7 @@
         title: 'Bootstrap notify',
         message: 'Turning standard Bootstrap alerts into "notify" like notifications',
         url: '',
-        target: '_blank'product-name
+        target: '_blank'
     }, {
         // settings
         element: 'body',

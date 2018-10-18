@@ -54,10 +54,10 @@ class CartController extends Controller
                 'price' => $product->price,
             ]);
             $status = 'success';
-            $message = 'Item has been added!';
+            $message = trans('message.add_item_success');
         } else {
             $status = 'warning';
-            $message = 'Fail to add item!';
+            $message = trans('message.add_item_fail');
         }
         $totalItems = Cart::count();
 
@@ -74,7 +74,7 @@ class CartController extends Controller
         Cart::remove($rowId);
         return response()->json([
             'status' => 'success',
-            'message' => 'Product has been removed!'
+            'message' => trans('message.remove_item_success')
         ]);
     }
 
@@ -89,7 +89,7 @@ class CartController extends Controller
             return response()->json([
                 'qty' => $qty,
                 'status' => 'fail',
-                'message' => 'Maximum products reached!',
+                'message' => trans('message.maximum_item'),
             ]);
         } else {
             $request->session()->forget('cart_qty_key');
@@ -97,7 +97,7 @@ class CartController extends Controller
             return response()->json([
                 'qty' => Cart::get($rowId)->qty,
                 'status' => 'success',
-                'message' => 'Successfully updated!',
+                'message' => trans('message.update_item_success'),
             ]);    
         }
     }
@@ -124,6 +124,7 @@ class CartController extends Controller
         try {
             DB::beginTransaction();
             $data = [
+                'user_id' => $request->get('user_id', ''),
                 'name' => $request->get('orderName'),
                 'email' => $request->get('orderEmail'),
                 'phone' => $request->get('orderPhone'),

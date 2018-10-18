@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Front\SetScheduleRequest;
+use App\Http\Requests\Front\UpdateScheduleRequest;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -91,7 +92,7 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SetScheduleRequest $request, $id)
+    public function update(UpdateScheduleRequest $request, $id)
     {
         $data = $request->all();
         $schedule = Schedule::findOrFail($id);

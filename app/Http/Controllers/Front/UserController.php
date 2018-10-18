@@ -17,6 +17,7 @@ use App\Models\Service;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SetSchedule;
+use App\Models\Order;
 
 class UserController extends Controller
 {
@@ -109,7 +110,9 @@ class UserController extends Controller
     {
         $user = Sentinel::getUser();
         $schedules = Schedule::where('email','=',$user->email)->get();
-        return view('frontend.users.profile', compact('user', 'schedules'));
+        $orders = Order::where('user_id', '=', $user->id)->get();
+        
+        return view('frontend.users.profile', compact('user', 'schedules', 'orders'));
     }
 
     public function postInfoUser(EditInfoRequest $request)

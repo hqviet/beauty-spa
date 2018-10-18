@@ -99,10 +99,10 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion2" href="#My_order_info">{{ __('front.my_schedule') }}</a>
+                                    <a data-toggle="collapse" data-parent="#accordion2" href="#My_billing_detail">{{ __('front.my_schedule') }}</a>
                                 </h4>
                             </div>
-                            <div id="My_order_info" class="panel-collapse collapse" role="tabpanel" >
+                            <div id="My_billing_detail" class="panel-collapse collapse" role="tabpanel" >
                                 <div class="panel-body">
                                     <form action="#">
                                         <!-- our order -->
@@ -139,31 +139,23 @@
                                         <div class="payment-details p-30">
                                             <table>
                                                 <tr>
-                                                    <td class="td-title-1">Dummy Product Name x 2</td>
-                                                    <td class="td-title-2">$1855.00</td>
+                                                    <td class="td-title-1">Order id</td>
+                                                    <td class="td-title-1">Date created</td>
+                                                    <td class="td-title-1">Status</td>
+                                                    <td class="td-title-2">Total</td>
                                                 </tr>
+                                                @forelse ($orders as $o)
                                                 <tr>
-                                                    <td class="td-title-1">Dummy Product Name</td>
-                                                    <td class="td-title-2">$555.00</td>
+                                                    <td class="td-title-1">{{ $o->id }}</td>
+                                                    <td class="td-title-1">{{ $o->created_at }}</td>
+                                                    <td class="td-title-1">@if ($o->status == 0) Pending @elseif ($o->status == 1) Delivering @else Done @endif</td>
+                                                    <td class="td-title-2">{{ $o->total }}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="td-title-1">Cart Subtotal</td>
-                                                    <td class="td-title-2">$2410.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="td-title-1">Shipping and Handing</td>
-                                                    <td class="td-title-2">$15.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="td-title-1">Vat</td>
-                                                    <td class="td-title-2">$00.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="order-total">Order Total</td>
-                                                    <td class="order-total-price">$2425.00</td>
-                                                </tr>
+                                                @empty
+                                                @endforelse
+                                                
                                             </table>
-                                            <button class="submit-btn-1 mt-20 btn-hover-1" type="submit" value="register">Save</button>
+                                            
                                         </div>
                                     </form>
                                 </div>

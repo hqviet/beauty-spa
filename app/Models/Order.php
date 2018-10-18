@@ -11,7 +11,7 @@ class Order extends Model
 
     protected $table = 'orders';
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'note', 'payment', 'total', 'status'
+        'user_id', 'name', 'email', 'phone', 'address', 'note', 'payment', 'total', 'status'
     ];
     protected $dates = ['deleted_at'];
 

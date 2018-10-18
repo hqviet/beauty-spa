@@ -18,6 +18,9 @@
                             <div class="checkout-content box-shadow p-30">
                                 <form action="{{ route('front.cart.checkout.handle') }}" method="POST">
                                     {{ csrf_field() }}
+                                    @if (Sentinel::getUser())
+                                    <input type="hidden" name="user_id" value="{{ Sentinel::getUser()->id }}">
+                                    @endif
                                     <div class="row">
                                         <!-- billing details -->
                                         <div class="col-md-6">

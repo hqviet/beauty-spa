@@ -68,7 +68,7 @@
                                                 <td>{{ $order->phone }}</td>
                                                 <td>@if ($order->status == 0) Pending @elseif ($order->status == 1) Delivering @else Done @endif</td>
                                                 <td>
-                                                    @if ($order->status == 0)
+                                                    @if ($order->status != 2)
                                                     <a href="#" class="btn btn-success check_btn" data-message="Are you sure you want to check order no." data-toggle="modal" data-target="#check_dialog" data-id="{{ $order->id }}">Check</a>
                                                     @endif
                                                     {{-- <a href="" class="btn btn-info">Edit</a> --}}
